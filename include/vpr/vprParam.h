@@ -48,7 +48,7 @@
  * The VPR version \em string. Instead of referencing this symbol, use
  * vpr::VPR_VERSION or vpr::getVersionString().
  */
-#define __VPR_VERSION_STRING__ "v2.2.0-1 'Facade' (BOOST) trunk Feb 17, 2011 12:09:08"
+#define __VPR_VERSION_STRING__ "v2.2.0-1 'Facade' (BOOST) trunk May 16, 2011 15:54:45"
 
 /**
  * The individual VPR version numbers.

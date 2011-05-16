@@ -814,12 +814,6 @@ protected:
 
       //mSocketImpl = NULL;  // Don't destory because it is a member of the child class
       //                      // it will get destroyed on it's own
-	   
-	   try {
-		mSocketImpl.reset();
-	   } catch (std::exception & ex) {
-		   std::cerr << "EXCEPTION: " << ex.what() << std::endl;
-	   }
    }
 
    /**
