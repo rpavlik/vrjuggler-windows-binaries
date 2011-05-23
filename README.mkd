@@ -7,7 +7,7 @@ Upstream project page: [VR Juggler](http://vrjuggler.googlecode.com)
 Build Information
 -----------------
 * Visual Studio 2008 (9.0) SP1, with the Visual C++ 2008 Feature Pack[1] installed for TR1 support.
-* 3.0 stable branch of the upstream SVN code
+* 3.0 stable branch of the upstream SVN code r21725
 * Both ReleaseDLL and DebugRtDLL build modes
 * 32-bit
 
