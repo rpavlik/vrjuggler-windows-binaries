@@ -6,13 +6,20 @@ Upstream project page: [VR Juggler](http://vrjuggler.googlecode.com)
 
 Build Information
 -----------------
-* Visual Studio 2008 (9.0) SP1, with the Visual C++ 2008 Feature Pack[1] installed for TR1 support.
+* Visual Studio 2008 (9.0) SP1, with the Visual C++ 2008 Feature Pack[1]
+	installed for TR1 support.
+
 * 3.0 stable branch of the upstream SVN code r21725
+
 * Both ReleaseDLL and DebugRtDLL build modes
+
 * 32-bit
 
 Included Dependencies
 ---------------------
+Used during build and also needed to build applications, so bundled in
+this tree
+
 * [CPPDOM][2] 1.0.3 (from [fork with CMake support][3])
 * [GMTL][4] 0.6.1
 * [Boost][5] 1.45
@@ -21,7 +28,9 @@ Included Dependencies
 
 Other Dependencies Used
 -----------------------
-Used during build (for plugins, generall), not needed to build VR Juggler applications, not bundled in this tree
+Used during build (for plugins, generall), not needed to build VR
+Juggler applications, not bundled in this tree
+
 * [Java JDK][11] 1.6.0_24
 * [OpenAL-soft][7]
 * [FreeALUT][8] 1.10 built against OpenAL-soft
