@@ -2,7 +2,7 @@
 <!DOCTYPE schema SYSTEM "http://www.w3.org/1999/XMLSchema.dtd">
 
 <!-- JCCL definition schema for definition file format v3.1 -->
-<!-- $Id: definition.xsd 16284 2004-12-01 02:19:35Z patrickh $ -->
+<!-- $Id$ -->
 
 <xs:schema targetNamespace="http://www.vrjuggler.org/jccl/xsd/3.1/definition"
            elementFormDefault="qualified"

@@ -41,4 +41,4 @@ Protocols
       In other words, the position/angles/quaternion/matrix information
       will not be shown in Ethereal.
 
-$Id: README.txt 12795 2003-06-15 23:26:16Z patrickh $
+$Id$

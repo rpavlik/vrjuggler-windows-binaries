@@ -324,4 +324,4 @@ cfg_2.0-2.1.xsl
    XSLT processor used.
 
 Patrick Hartling <patrick@vrjuggler.org>
-$Id: README.txt 15654 2004-09-17 22:49:47Z patrickh $
+$Id$

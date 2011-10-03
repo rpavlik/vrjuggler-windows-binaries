@@ -5,7 +5,7 @@
      shouldn't differ from this one except for this comment and entity
      expansions, but just in case -->
 <!DOCTYPE schema PUBLIC "-//W3C//DTD XMLSCHEMA 19991216//EN" "XMLSchema.dtd" >
-<schema xmlns="http://www.w3.org/1999/XMLSchema" targetNamespace="http://www.w3.org/1999/XMLSchema" blockDefault="#all" elementFormDefault="qualified" version="$Id: XMLSchema.xsd 16271 2004-11-25 01:20:33Z patrickh $">
+<schema xmlns="http://www.w3.org/1999/XMLSchema" targetNamespace="http://www.w3.org/1999/XMLSchema" blockDefault="#all" elementFormDefault="qualified" version="$Id$">
 
   <!-- The simpleType element and all of its members are defined
        in XML Schema: Part 2: Datatypes -->

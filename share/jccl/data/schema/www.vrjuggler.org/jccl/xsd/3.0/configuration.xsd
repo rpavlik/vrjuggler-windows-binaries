@@ -2,7 +2,7 @@
 <!DOCTYPE schema SYSTEM "http://www.w3.org/1999/XMLSchema.dtd">
 
 <!-- Jackal configuration schema for configuration file format v3.0 -->
-<!-- $Id: configuration.xsd 15598 2004-09-11 21:11:55Z patrickh $ -->
+<!-- $Id$ -->
 
 <xs:schema targetNamespace="http://www.vrjuggler.org/jccl/xsd/3.0/configuration"
            elementFormDefault="qualified"

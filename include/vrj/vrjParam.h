@@ -39,7 +39,7 @@
  * The VR Juggler version \em string. Instead of referencing this symbol, use
  * vrj::VJ_VERSION or vrj::getVersionString().
  */
-#define __VJ_VERSION_STRING__ "v3.0.0-1 'The Joker' (BOOST) trunk May 16, 2011 15:54:45"
+#define __VJ_VERSION_STRING__ "v3.0.0-1 'The Joker' (BOOST) trunk Sep 23, 2011 08:25:37"
 
 /**
  * The individual VR Juggler version numbers.

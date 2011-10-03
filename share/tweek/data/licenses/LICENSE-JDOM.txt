@@ -1,6 +1,6 @@
 /*-- 
 
- $Id: LICENSE-JDOM.txt 10395 2002-08-21 13:43:18Z patrickh $
+ $Id$
 
  Copyright (C) 2000-2002 Brett McLaughlin & Jason Hunter.
  All rights reserved.

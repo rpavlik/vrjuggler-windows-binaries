@@ -48,7 +48,7 @@
  * The Sonix version \em string. Instead of referencing this symbol, use
  * snx::SNX_VERSION or snx::getVersionString().
  */
-#define __SNX_VERSION_STRING__ "v1.4.0-1 'Hush' (BOOST) trunk May 16, 2011 15:54:45"
+#define __SNX_VERSION_STRING__ "v1.4.0-1 'Hush' (BOOST) trunk Sep 23, 2011 08:25:37"
 
 /** 
  * The individual SNX version numbers.

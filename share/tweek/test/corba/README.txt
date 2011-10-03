@@ -63,4 +63,4 @@
 
          http://www.uk.research.att.com/omniORB/doc/3.0/omniORB/omniORB006.html
 
-$Id: README.txt 6650 2001-11-12 16:53:05Z patrickh $
+$Id$

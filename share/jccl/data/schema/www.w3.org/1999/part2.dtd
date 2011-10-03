@@ -1,5 +1,5 @@
 <!-- DTD for XML Schemas: Part 2: Datatypes -->
-<!-- $Id: part2.dtd 16271 2004-11-25 01:20:33Z patrickh $ -->
+<!-- $Id$ -->
 <!-- Note this DTD is NOT the normative datatypes DTD - - the
      prose copy in the datatypes REC is the normative version (which
      shouldn't differ from this one except for this comment and entity

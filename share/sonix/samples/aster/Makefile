@@ -29,7 +29,7 @@
 
 # =============================================================================
 # Basic template makefile for applications.
-# $Id: Makefile 21549 2010-11-21 16:11:38Z patrick.hartling $
+# $Id$
 #
 # *** IMPORTANT NOTES -- READ THESE FIRST ***
 #     1) This file _requires_ the use of GNU make (gmake).

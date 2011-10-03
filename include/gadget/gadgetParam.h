@@ -39,7 +39,7 @@
  * The Gadgeteer version \em string. Instead of referencing this symbol, use
  * gadget::GADGET_VERSION or gadget::getVersionString().
  */
-#define __GADGET_VERSION_STRING__ "v2.0.0-1 'Gearhead' (BOOST) trunk May 16, 2011 15:54:45"
+#define __GADGET_VERSION_STRING__ "v2.0.0-1 'Gearhead' (BOOST) trunk Sep 23, 2011 08:25:37"
 
 /**
  * The individual Gadgeteer version numbers.

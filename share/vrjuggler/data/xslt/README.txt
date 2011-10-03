@@ -135,4 +135,4 @@ key_sym_2_0.xsl
    will be ready for migration to VR Juggler 2.2 using VRJConfig.
 
 Patrick Hartling <patrick.hartling@priority5.com>
-$Id: README.txt 20977 2008-01-01 15:40:34Z patrick $
+$Id$

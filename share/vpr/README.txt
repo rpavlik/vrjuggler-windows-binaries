@@ -84,4 +84,4 @@ Table of contents:
     Refer to the INSTALL file for instructions on compiling and installing
     the VR Juggler Portable Runtime from source.
 
-$Id: README.txt 12464 2003-04-27 18:25:07Z patrickh $
+$Id$
