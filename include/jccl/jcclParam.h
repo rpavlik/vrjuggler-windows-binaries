@@ -39,7 +39,7 @@
  * The JCCL version \em string. Instead of referencing this symbol, use
  * jccl::JCCL_VERSION or jccl::getVersionString().
  */
-#define __JCCL_VERSION_STRING__ "v1.4.0-1 'Bane' (BOOST) trunk Sep 23, 2011 08:25:37"
+#define __JCCL_VERSION_STRING__ "v1.4.0-1 'Bane' (BOOST) trunk Oct 07, 2011 16:07:46"
 
 /**
  * Individual JCCL verions numbers

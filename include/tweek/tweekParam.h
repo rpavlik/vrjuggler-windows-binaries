@@ -39,7 +39,7 @@
  * The Tweek version \em string. Instead of referencing this symbol, use
  * tweek::TWEEK_VERSION or tweek::getVersionString().
  */
-#define __TWEEK_VERSION_STRING__ "v1.4.0-1 'Two-Face' (BOOST) trunk Sep 23, 2011 08:25:37"
+#define __TWEEK_VERSION_STRING__ "v1.4.0-1 'Two-Face' (BOOST) trunk Oct 07, 2011 16:07:45"
 
 /**
  * The individual TWEEK version numbers
