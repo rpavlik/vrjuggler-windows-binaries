@@ -15,6 +15,23 @@ Build Information
 
 * 32-bit
 
+Usage
+-----
+There is no "Installation" process - this is a self-contained "prefix" of software. There is a [`vc9-cmd-prompt-here.cmd` script][cmdscript] that essentially starts a "Visual Studio 2008 Command Prompt" in which the `%PATH%` has been extended to include the `bin` and `lib` directories (so DLLs can be found), and the current directory has been set as both `%VJ_BASE_DIR%` and `%VJ_DEPS_DIR%` (so VR Juggler and handmade Visual Studio projects can find things). Using this script means you do *not* need to set/modify any system-wide environment variables. In fact, setting `%VJ_BASE_DIR%` and `%VJ_DEPS_DIR%` system-wide can goof things up (particularly running installed apps and `vrjconfig`)
+
+* If you're using [CMake for VR Juggler][cmake-modules], add the directory where you saved this to your `CMAKE_PREFIX_PATH`, and you'll be able to build your app. (Recommended because it's cross-platform.)
+
+* If you're using just straight Visual Studio projects that refer to the environment variables `VJ_BASE_DIR` and `VJ_DEPS_DIR` in their configuration (such as the samples that come with, you can double-click `vc9-cmd-prompt-here.cmd` and run `devenv` to start Visual Studio's IDE.
+
+* `vrjconfig` can be started with the `bin\vrjconfig.bat` file.
+
+* You can also run VR Juggler apps from the `vc9-cmd-prompt-here.cmd` prompt (you can drop the exe into the command window to enter its full path) - the variables set by the script will ensure it can find everything it needs from VR Juggler.
+                                                                                                                                                  
+* Finally, you could place a VR Juggler application .exe directly in the `bin` directory to run it, though this is a bit hacky to be doing on a regular basis during development.
+
+[cmdscript]: https://github.com/rpavlik/vrjuggler-windows-binaries/blob/3.0-vc9-32/vc9-cmd-prompt-here.cmd
+[cmake-modules]: https://github.com/rpavlik/cmake-modules
+
 Included Dependencies
 ---------------------
 Used during build and also needed to build applications, so bundled in
