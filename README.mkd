@@ -21,7 +21,7 @@ There is no "Installation" process - this is a self-contained "prefix" of softwa
 
 * If you're using [CMake for VR Juggler][cmake-modules], add the directory where you saved this to your `CMAKE_PREFIX_PATH`, and you'll be able to build your app. (Recommended because it's cross-platform.)
 
-* If you're using just straight Visual Studio projects that refer to the environment variables `VJ_BASE_DIR` and `VJ_DEPS_DIR` in their configuration (such as the samples that come with, you can double-click `vc9-cmd-prompt-here.cmd` and run `devenv` to start Visual Studio's IDE.
+* If you're using just straight Visual Studio projects that refer to the environment variables `VJ_BASE_DIR` and `VJ_DEPS_DIR` in their configuration (such as the samples that come with, you can double-click `vc9-cmd-prompt-here.cmd` and run `devenv` to start Visual Studio's IDE. Or, just double-click `visual-studio-ide-here.cmd`, which launches it directly without leaving a command prompt open.
 
 * `vrjconfig` can be started with the `bin\vrjconfig.bat` file.
 
