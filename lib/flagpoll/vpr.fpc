@@ -2,14 +2,14 @@
 prefix= ${fp_file_cwd}/../..
 exec_prefix = ${prefix}
 
-VERSION_DOT = 2.2.0
+VERSION_DOT = 2.2.1
 
 ISA = 
 ABI = 
 SUBSYSTEM = BOOST
 MAJOR_VERSION = 2
 MINOR_VERSION = 2
-MICRO_VERSION = 0
+MICRO_VERSION = 1
 LIBBITSUF = 
 PLATFORM = Windows
 

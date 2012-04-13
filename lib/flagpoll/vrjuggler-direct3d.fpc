@@ -2,13 +2,13 @@
 prefix= ${fp_file_cwd}/../..
 exec_prefix = ${prefix}
 
-VERSION_DOT = 3.0.0
+VERSION_DOT = 3.0.1
 
 ISA = 
 ABI = 
 MAJOR_VERSION = 3
 MINOR_VERSION = 0
-MICRO_VERSION = 0
+MICRO_VERSION = 1
 LIBBITSUF = 
 PLATFORM = Windows
 vrj_version = ${MAJOR_VERSION}.${MINOR_VERSION}.${MICRO_VERSION}

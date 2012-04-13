@@ -42,19 +42,19 @@
  * a compile-time constant and is suitable (and intended) for use with
  * preprocessor integer comparisons.
  */
-#define __SNX_version 1004000
+#define __SNX_version 1004001
 
 /**
  * The Sonix version \em string. Instead of referencing this symbol, use
  * snx::SNX_VERSION or snx::getVersionString().
  */
-#define __SNX_VERSION_STRING__ "v1.4.0-1 'Hush' (BOOST) trunk Oct 07, 2011 16:07:46"
+#define __SNX_VERSION_STRING__ "v1.4.1-1 'Hush' (BOOST) trunk Apr 13, 2012 14:35:41"
 
 /** 
  * The individual SNX version numbers.
  */
 #define __SNX_MAJOR__ 1
 #define __SNX_MINOR__ 4
-#define __SNX_PATCH__ 0
+#define __SNX_PATCH__ 1
 
 #endif	/* _SNX_PARAM_H_ */

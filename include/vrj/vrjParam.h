@@ -33,19 +33,19 @@
  * number is a compile-time constant and is suitable (and intended) for use
  * with preprocessor integer comparisons.
  */
-#define __VJ_version 3000000
+#define __VJ_version 3000001
 
 /**
  * The VR Juggler version \em string. Instead of referencing this symbol, use
  * vrj::VJ_VERSION or vrj::getVersionString().
  */
-#define __VJ_VERSION_STRING__ "v3.0.0-1 'The Joker' (BOOST) trunk Oct 07, 2011 16:07:46"
+#define __VJ_VERSION_STRING__ "v3.0.1-1 'The Joker' (BOOST) trunk Apr 13, 2012 14:35:42"
 
 /**
  * The individual VR Juggler version numbers.
  */
 #define __VJ_MAJOR__ 3
 #define __VJ_MINOR__ 0
-#define __VJ_PATCH__ 0
+#define __VJ_PATCH__ 1
 
 #endif	/* _VJ_PARAM_H_ */

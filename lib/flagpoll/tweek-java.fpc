@@ -2,11 +2,11 @@
 prefix= ${fp_file_cwd}/../..
 exec_prefix = ${prefix}
 
-VERSION_DOT = 1.4.0
+VERSION_DOT = 1.4.1
 
 MAJOR_VERSION = 1
 MINOR_VERSION = 4
-MICRO_VERSION = 0
+MICRO_VERSION = 1
 tweek_version = ${MAJOR_VERSION}.${MINOR_VERSION}.${MICRO_VERSION}
 
 topdir = 

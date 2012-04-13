@@ -42,19 +42,19 @@
  * compile-time constant and is suitable (and intended) for use with
  * preprocessor integer comparisons.
  */
-#define __VPR_version 2002000
+#define __VPR_version 2002001
 
 /**
  * The VPR version \em string. Instead of referencing this symbol, use
  * vpr::VPR_VERSION or vpr::getVersionString().
  */
-#define __VPR_VERSION_STRING__ "v2.2.0-1 'Facade' (BOOST) trunk Oct 07, 2011 16:07:45"
+#define __VPR_VERSION_STRING__ "v2.2.1-1 'Facade' (BOOST) trunk Apr 13, 2012 14:35:41"
 
 /**
  * The individual VPR version numbers.
  */
 #define __VPR_MAJOR__ 2
 #define __VPR_MINOR__ 2
-#define __VPR_PATCH__ 0
+#define __VPR_PATCH__ 1
 
 #endif	/* _VPR_PARAM_H_ */

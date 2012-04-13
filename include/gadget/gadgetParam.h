@@ -33,19 +33,19 @@
  * number is a compile-time constant and is suitable (and intended) for use
  * with preprocessor integer comparisons.
  */
-#define __GADGET_version 2000000
+#define __GADGET_version 2000001
 
 /**
  * The Gadgeteer version \em string. Instead of referencing this symbol, use
  * gadget::GADGET_VERSION or gadget::getVersionString().
  */
-#define __GADGET_VERSION_STRING__ "v2.0.0-1 'Gearhead' (BOOST) trunk Oct 07, 2011 16:07:46"
+#define __GADGET_VERSION_STRING__ "v2.0.1-1 'Gearhead' (BOOST) trunk Apr 13, 2012 14:35:42"
 
 /**
  * The individual Gadgeteer version numbers.
  */
 #define __GADGET_MAJOR__ 2
 #define __GADGET_MINOR__ 0
-#define __GADGET_PATCH__ 0
+#define __GADGET_PATCH__ 1
 
 #endif	/* _GAD_PARAM_H_ */

@@ -9,7 +9,9 @@ Build Information
 * Visual Studio 2008 (9.0) SP1, *with the [Visual C++ 2008 Feature Pack][1]*
 	installed for TR1 support.
 
-* 3.0 stable branch of the upstream SVN code r21806
+* 3.0 stable branch of the upstream Git - commit 344063cf7bdc2a9923430e129482499026b27159
+
+    * NOTE: This release now identifies itself as 3.0.1 - you may need to update your build configurations.
 
 * Both ReleaseDLL and DebugRtDLL build modes
 
@@ -45,11 +47,11 @@ this tree
 
 Other Dependencies Used
 -----------------------
-Used during build (for plugins, generall), not needed to build VR
+Used during build (for plugins, generally), not needed to build VR
 Juggler applications, not bundled in this tree
 
-* [Java JDK][11] 1.6.0_24
-* [OpenAL-soft][7]
+* [Java JDK][11] 1.6.0_31
+* [OpenAL-soft][7] - 1.14
 * [FreeALUT][8] 1.10 built against OpenAL-soft
 * [VRPN][10] 07.29 prerelease
 

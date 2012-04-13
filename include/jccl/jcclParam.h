@@ -33,19 +33,19 @@
  * a compile-time constant and is suitable (and intended) for use with
  * preprocessor integer comparisons.
  */
-#define __JCCL_version 1004000
+#define __JCCL_version 1004001
 
 /**
  * The JCCL version \em string. Instead of referencing this symbol, use
  * jccl::JCCL_VERSION or jccl::getVersionString().
  */
-#define __JCCL_VERSION_STRING__ "v1.4.0-1 'Bane' (BOOST) trunk Oct 07, 2011 16:07:46"
+#define __JCCL_VERSION_STRING__ "v1.4.1-1 'Bane' (BOOST) trunk Apr 13, 2012 14:35:41"
 
 /**
  * Individual JCCL verions numbers
  */
 #define __JCCL_MAJOR__ 1
 #define __JCCL_MINOR__ 4
-#define __JCCL_PATCH__ 0
+#define __JCCL_PATCH__ 1
 
 #endif	/* _JCCL_PARAM_H_ */

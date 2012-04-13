@@ -33,19 +33,19 @@
  * is a compile-time constant and is suitable (and intended) for use with
  * preprocessor integer comparisons.
  */
-#define __TWEEK_version 1004000
+#define __TWEEK_version 1004001
 
 /**
  * The Tweek version \em string. Instead of referencing this symbol, use
  * tweek::TWEEK_VERSION or tweek::getVersionString().
  */
-#define __TWEEK_VERSION_STRING__ "v1.4.0-1 'Two-Face' (BOOST) trunk Oct 07, 2011 16:07:45"
+#define __TWEEK_VERSION_STRING__ "v1.4.1-1 'Two-Face' (BOOST) trunk Apr 13, 2012 14:35:41"
 
 /**
  * The individual TWEEK version numbers
  */
 #define __TWEEK_MAJOR__ 1
 #define __TWEEK_MINOR__ 4
-#define __TWEEK_PATCH__ 0
+#define __TWEEK_PATCH__ 1
 
 #endif	/* _TWEEK_PARAM_H_ */
