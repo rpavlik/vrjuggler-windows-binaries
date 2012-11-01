@@ -6,8 +6,9 @@ Upstream project page: [VR Juggler](http://vrjuggler.googlecode.com)
 
 Build Information
 -----------------
-* Visual Studio 2008 (9.0) SP1, *with the [Visual C++ 2008 Feature Pack][1]*
-	installed for TR1 support.
+* Visual Studio 2008 (9.0), *with the [Visual C++ 2008 Feature Pack][1] or [Visual Studio SP1][sp1]*
+	installed for TR1 support. (These must be manually installed - they don't come through Microsoft Update.
+        SP1 supercedes the feature pack. See [this post][checksp1] for info on checking for SP1.)
 
 * 3.0 stable branch of the upstream Git - commit 344063cf7bdc2a9923430e129482499026b27159
 
@@ -16,6 +17,9 @@ Build Information
 * Both ReleaseDLL and DebugRtDLL build modes
 
 * 32-bit
+
+[sp1]: http://www.microsoft.com/en-us/download/details.aspx?id=10986
+[checksp1]: http://stackoverflow.com/questions/160948/how-can-i-tell-if-sp1-has-been-installed-on-vs2008
 
 Usage
 -----
