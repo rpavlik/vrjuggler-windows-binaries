@@ -32,7 +32,7 @@ There is no "Installation" process - this is a self-contained "prefix" of softwa
 * `vrjconfig` can be started with the `vrjconfig.cmd` file.
 
 * You can also run VR Juggler apps from the `vc9-cmd-prompt-here.cmd` prompt (you can drop the exe into the command window to enter its full path) - the variables set by the script will ensure it can find everything it needs from VR Juggler.
-                                                                                                                                                  
+
 * Finally, you could place a VR Juggler application .exe directly in the `bin` directory to run it, though this is a bit hacky to be doing on a regular basis during development.
 
 [cmdscript]: https://github.com/rpavlik/vrjuggler-windows-binaries/blob/3.0-vc9-32/vc9-cmd-prompt-here.cmd
