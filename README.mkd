@@ -29,7 +29,7 @@ There is no "Installation" process - this is a self-contained "prefix" of softwa
 
 * If you're using just straight Visual Studio projects that refer to the environment variables `VJ_BASE_DIR` and `VJ_DEPS_DIR` in their configuration (such as the samples that come with, you can double-click `vc9-cmd-prompt-here.cmd` and run `devenv` to start Visual Studio's IDE. Or, just double-click `visual-studio-ide-here.cmd`, which launches it directly without leaving a command prompt open.
 
-* `vrjconfig` can be started with the `bin\vrjconfig.bat` file.
+* `vrjconfig` can be started with the `vrjconfig.cmd` file.
 
 * You can also run VR Juggler apps from the `vc9-cmd-prompt-here.cmd` prompt (you can drop the exe into the command window to enter its full path) - the variables set by the script will ensure it can find everything it needs from VR Juggler.
                                                                                                                                                   
