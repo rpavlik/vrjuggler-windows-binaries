@@ -47,7 +47,7 @@
 namespace vpr
 {
 
-#if defined(HAVE_TIMEVAL) && ! defined(VPR_OS_Windows)
+#if defined(HAVE_TIMEVAL)
 /**
  * @since 0.92.4
  */

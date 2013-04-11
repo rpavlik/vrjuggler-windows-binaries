@@ -138,7 +138,7 @@ public:
    {
       if ( ! TlsSetValue(mKeyID, value) )
       {
-#if defined(_MSC_VER) && _MSC_VER < 1400
+#if (defined(_MSC_VER) && _MSC_VER < 1400) || defined(__MINGW32__)
          const char* msg = std::strerror(errno);
 #else
          char msg[256];

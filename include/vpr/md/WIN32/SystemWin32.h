@@ -48,7 +48,7 @@
 
 #include <sys/types.h>
 #include <windows.h>
-#include <Winsock2.h>
+#include <winsock2.h>
 
 #include <vpr/vprTypes.h>
 #include <vpr/SystemBase.h>

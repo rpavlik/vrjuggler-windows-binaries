@@ -46,6 +46,7 @@
 #include <vpr/vprConfig.h>
 
 #include <assert.h>
+#include <stdio.h> // for stderr
 #include <boost/concept_check.hpp>
 #include <boost/noncopyable.hpp>
 

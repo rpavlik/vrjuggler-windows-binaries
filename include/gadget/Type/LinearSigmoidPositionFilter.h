@@ -29,7 +29,7 @@
 
 #include <gadget/gadgetConfig.h>
 
-#include <gadget/Type/PositionFilter.h>
+#include <gadget/Filter/Position/PositionFilter.h>
 #include <gmtl/Quat.h>
 
 namespace gadget

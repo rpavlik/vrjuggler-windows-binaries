@@ -232,12 +232,14 @@ protected:
     */
    void update()
    {
-      // Update the viewer time stamp
-      const double head_time(
-         mKernel->getUsers()[0]->getHeadPosProxy()->getTimeStamp().secd()
-      );
-      mViewer->advance(head_time);
-
+      if (mKernel->getUsers().size() > 0)
+	  {
+         // Update the viewer time stamp
+         const double head_time(
+            mKernel->getUsers()[0]->getHeadPosProxy()->getTimeStamp().secd()
+         );
+         mViewer->advance(head_time);
+      }
       // Only update everything attached to the viewer if there
       // is actually work to do
       if (mViewer->done())

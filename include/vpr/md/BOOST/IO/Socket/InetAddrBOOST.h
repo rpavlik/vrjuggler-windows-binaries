@@ -38,6 +38,10 @@
 
 #include <vpr/vprConfig.h>
 
+#ifdef VPR_OS_Windows
+#include <windows.h>
+#endif
+
 #include <sys/types.h>
 //#include <netinet/in.h>
 #include <string>
