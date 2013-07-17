@@ -10,7 +10,7 @@ Build Information
 	installed for TR1 support. (These must be manually installed - they don't come through Microsoft Update.
         SP1 supercedes the feature pack. See [this post][checksp1] for info on checking for SP1.)
 
-* 3.0 stable branch of the upstream Git, with additional improvements - source tagged at <https://github.com/rpavlik/vrjuggler/tree/vrjuggler-windows-binaries-3.0-vc9-32-20130411>
+* 3.0 stable branch of the upstream Git, with additional improvements - source tagged at <https://github.com/rpavlik/vrjuggler/tree/vrjuggler-windows-binaries-3.0-vc9-32-20130717>
 
     * NOTE: This release now identifies itself as 3.0.1 - you may need to update your build configurations.
 
