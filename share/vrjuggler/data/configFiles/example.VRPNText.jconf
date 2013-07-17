@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?org-vrjuggler-jccl-settings configuration.version="3.0"?>
+<configuration xmlns="http://www.vrjuggler.org/jccl/xsd/3.0/configuration" name="example.VRPNText.jconf" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.vrjuggler.org/jccl/xsd/3.0/configuration http://www.vrjuggler.org/jccl/xsd/3.0/configuration.xsd">
+   <elements>
+      <input_manager name="VRPN Manager" version="2">
+         <driver>VRPN_drv</driver>
+      </input_manager>
+      <vrpntext name="KinectDevice" version="1">
+         <device>kinect0@localhost</device>
+      </vrpntext>
+      <string_proxy name="KinectProxy" version="1">
+         <device>KinectDevice</device>
+         <unit>0</unit>
+      </string_proxy>
+   </elements>
+</configuration>
+

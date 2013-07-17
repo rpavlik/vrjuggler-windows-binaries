@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?org-vrjuggler-jccl-settings definition.version="3.1"?>
+<definition xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://www.vrjuggler.org/jccl/xsd/3.1/definition" name="vrpntext" icon_path="jar:file:${VJ_BASE_DIR}/bin/beans/ProxyEditor.jar!/org/vrjuggler/vrjconfig/customeditors/proxyeditor/images/position64.jpg" xsi:schemaLocation="http://www.vrjuggler.org/jccl/xsd/3.1/definition http://www.vrjuggler.org/jccl/xsd/3.1/definition.xsd">
+   <definition_version version="1" label="VRPNText">
+      <abstract>false</abstract>
+      <help>Configure a VRPN Text (string) connection</help>
+      <parent>string_device</parent>
+	  <category>/Devices</category>
+      <property valuetype="string" variable="false" name="device">
+         <help>VRPN text device (e.g. Text0@localhost)</help>
+         <value label="device" defaultvalue="Text0@localhost"/>
+      </property>
+	  <upgrade_transform/>
+   </definition_version>
+</definition>
