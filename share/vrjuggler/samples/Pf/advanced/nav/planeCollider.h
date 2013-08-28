@@ -1,0 +1,53 @@
+/*************** <auto-copyright.pl BEGIN do not edit this line> **************
+ *
+ * VR Juggler is (C) Copyright 1998-2010 by Iowa State University
+ *
+ * Original Authors:
+ *   Allen Bierbaum, Christopher Just,
+ *   Patrick Hartling, Kevin Meinert,
+ *   Carolina Cruz-Neira, Albert Baker
+ *
+ * This library is free software; you can redistribute it and/or
+ * modify it under the terms of the GNU Library General Public
+ * License as published by the Free Software Foundation; either
+ * version 2 of the License, or (at your option) any later version.
+ *
+ * This library is distributed in the hope that it will be useful,
+ * but WITHOUT ANY WARRANTY; without even the implied warranty of
+ * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the GNU
+ * Library General Public License for more details.
+ *
+ * You should have received a copy of the GNU Library General Public
+ * License along with this library; if not, write to the
+ * Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor,
+ * Boston, MA 02110-1301, USA.
+ *
+ *************** <auto-copyright.pl END do not edit this line> ***************/
+
+#ifndef _PLANE_COLLIDER_H_
+#define _PLANE_COLLIDER_H_
+
+#include <collider.h>
+#include <gmtl/Vec.h>
+#include <gmtl/Matrix.h>
+
+class planeCollider : public collider
+{
+public:
+   planeCollider() : mHeight( 0 )
+   {
+   }
+
+   virtual ~planeCollider()
+   {
+   }
+
+   bool testMove(const gmtl::Vec3f& curPos, const gmtl::Vec3f& delta,
+                 gmtl::Vec3f& correction, bool curPosWithDelta = false);
+
+private:
+   float mHeight;    // Height of the plane
+};
+
+
+#endif
