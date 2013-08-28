@@ -1,0 +1,21 @@
+lib: AEC_NTTC.lib
+# from AecPCIeTC_8-12a
+64BitOS_files\DLL Versions
+32BitOS_files\DLLversions
+# from AecPci6_02_CD - 32 bit only
+TestPrograms_WithDLL\DLL_API_INFO
+
+dll: AEC_NTTC.dll
+# from AecPCIeTC_8-12a
+64BitOS_files\DLL Versions
+32BitOS_files\DLLversions
+# from AecPci6_02_CD - 32 bit only
+TestPrograms_WithDLL
+
+header: AEC_NTTC.h
+# from AecPCIeTC_8-12a
+SDK_SourceCode
+
+# from AecPci6_02_CD - called AECINTTC.H, has the extern "C" already on it, identical to one in TestPrograms_WithDLL\ZippedDevelopmentProjects\AecMfc32_Rel504
+TestPrograms_WithDLL\DLL_API_INFO
+TestPrograms_WithDLL\ZippedDevelopmentProjects\AecMfc32_Rel504

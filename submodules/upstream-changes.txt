@@ -1,0 +1,235 @@
+commit abd82e60373b9864f6b23335ab46186a1a48b0bd
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 29 11:20:09 2011 -0400
+
+    Fix memory leaks in linux/hidraw implementation.
+    
+    Zbigniew Czapiga noticed that some of the udev objects in linux/hid.c weren't
+    being freed properly.
+
+commit 75bfadb04ed409a2b9acf45b8414b2662a2a4080
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Aug 23 23:32:00 2011 +0200
+
+    linux/Makefile: Add spaces and lines for better readability
+
+commit 9b31061613a052fcad88cdf7a6d1709b74453e33
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Aug 23 23:24:57 2011 +0200
+
+    linux/Makefile: Add support for cross compilation
+    
+    0. VDR`s `Makefile` was taken as a template [1].
+    1. Separate variables for flags for `CC` and `CXX` were introduced. `-c` is now passed explicitly. Further flags for `CXX` could be added like in VDR’s `Makefile`.
+    2. Separate variable `INCLUDES` defined which is only used for the libraries(?).
+    
+    [1] http://git.gekrumbel.de/vdr.git?p=vdr.git;a=blob;f=Makefile;hb=bd61fee1e9328aec470c319494cccb90e53302c2
+    --
+    Please note that this is not build tested.
+
+commit 359138c8b67ff658994b01b0fab10ce3417639cd
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Aug 23 23:12:48 2011 +0200
+
+    linux/Makefile: Add `$(LDFLAGS)` to the linker calls
+    
+    Some cross compiling frame works like OpenEmbedded [1] pass this variable along.
+    
+    [1] http://www.openembedded.org/
+
+commit ab3ba2e2a610319265c3162a6f754f5e35748619
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Aug 23 23:04:52 2011 +0200
+
+    linux/Makefile: Do not override predefined `CC` or `CXX`
+    
+    This is especially important for cross compilation.
+
+commit ceb858109afd75f765ec023c526dc549d424dab6
+Author: Paul Menzel <paulepanter@users.sourceforge.net>
+Date:   Tue Aug 23 23:03:29 2011 +0200
+
+    linux/Makefile: Use `$(CXX)` instead of `g++`
+
+commit 8a5d92ef0b626362e6143a3e600ad46bfaa9ff05
+Merge: 4f284dc 0351bb1
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 8 21:43:38 2011 -0400
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit 4f284dc2ec2706678126ff45dcc3ab81abad580e
+Merge: 0bef94e d94f682
+Author: signal11 <alan@signal11.us>
+Date:   Mon Aug 8 18:37:38 2011 -0700
+
+    Check for NULL device on enumeration on Mac.
+    
+    On Mac, hid_enumerate can crash if the device is unplugged during enumeration.
+    
+    From: Richard Bateman (Taxilian) <taxilian@gmail.com>
+
+commit 0351bb1abb6733f97701301dd8df2edc7742f41e
+Merge: 0bef94e d94f682
+Author: signal11 <alan@signal11.us>
+Date:   Mon Aug 8 18:37:38 2011 -0700
+
+    Merge pull request #10 from taxilian/master
+    
+    Check for NULL device on enumeration on Mac.
+    
+    On Mac, hid_enumerate can crash if the device is unplugged during enumeration.
+
+commit 0bef94e27b29e44dfabdbd331bab518f2da399a6
+Merge: 03c407e 30ef965
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 8 21:33:34 2011 -0400
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit 03c407ee8979abf5cd2e0e78e0998be9c97e47b7
+Author: Camille Moncelier <moncelier@devlife.org>
+Date:   Tue Jul 19 11:08:48 2011 +0200
+
+    Fixed a leak where hid_open weren't freeing a device_path
+
+commit 30ef96513dda802fe9f1b82a4c03e712c40dd224
+Merge: 8066251 110de52
+Author: signal11 <alan@signal11.us>
+Date:   Mon Aug 8 18:30:19 2011 -0700
+
+    Merge pull request #12 from pix/fixes/fix-hid_open-leak
+    
+    Fixed a memory leak in hid_open_path()
+    
+    On some failures, dev_path would not get freed.
+
+commit 8066251aa888a6558012987a6871a4aaf66ff461
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 8 21:16:09 2011 -0400
+
+    Add ioctl definitions
+    
+    Added the HIDIOCSFEATURE and HIDIOCGFEATURE ioctl macros to hid.c so that it
+    will compile with older kernel headers. This of course doesn't make it _run_
+    with older kernels. Some distros ship older kernel headers than the running
+    kernel.
+
+commit 781efae694086911b6a6ad6737d9f0c037c9dee5
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 8 20:14:12 2011 -0400
+
+    hid_read_timeout() (Mac)
+    
+    Add hid_read_timeout() to mac.
+
+commit e62dba691dd8583f5b5c78ab5349cc6df17594fc
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Aug 8 19:52:11 2011 -0400
+
+    hid_read_timeout() (Linux and Windows).
+    
+    hid_read_timeout() will execute a blocking read up until a timeout has been
+    reached or data has been received.
+    
+    This patch implements it on all platforms and comes from Urs Fleisch.
+    Commit log message by Alan Ott.
+    
+    Signed-off-by: Urs Fleisch <urs.fleisch@gmail.com>
+    Tested-by: Alan Ott <alan@signal11.us>
+
+commit 7e93a4e068825d22780702978d41aa3678f10a7d
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Jul 25 23:42:05 2011 -0400
+
+    Logic error fix.
+    
+    Fixed Logic error from the last commit where the wrong data was checked.
+
+commit 9448fd8fcbb10eb652a25eb77ca1118c03ee3d7f
+Author: Alan Ott <alan@signal11.us>
+Date:   Mon Jul 25 17:53:12 2011 -0400
+
+    Re-design of hid_read().
+    
+    This fixes the performance issue caused by calling CancelIo() when no data arrives in asynchronous (non-blocking) mode. Reported by Bill Good.
+    
+    This new design also fixes the race condition causing lost packets that can happen if data comes between the time when the Event was checked (WaitForSingleObject()) and the CancelIo() call. Reported by Hans Van Leemputten.
+
+commit 110de52c408a4b1c5e58923f13b6cb47932e8588
+Author: Camille Moncelier <moncelier@devlife.org>
+Date:   Tue Jul 19 11:08:48 2011 +0200
+
+    Fixed a leak where hid_open weren't freeing a device_path
+
+commit d94f682c707bb0c98982469bb15aa76b704d1dc0
+Author: Richard Bateman <taxilian@gmail.com>
+Date:   Fri Jun 24 15:21:27 2011 -0600
+
+    Fixed possible mac when unplugging a device during enumeration
+
+commit 687a8385a12ac7ae8275855481c926c257f8d160
+Author: Alan Ott <alan@signal11.us>
+Date:   Sun Jun 19 22:11:09 2011 -0400
+
+    Fix memory leak on Windows.
+    
+    The EVENT object in hid_read() was not getting closed when in blocking mode. Fix from John Hu.
+
+commit 6ad666c5b597901caa3e5bfef586e8a511398464
+Author: Alan Ott <alan@signal11.us>
+Date:   Fri Apr 8 20:05:11 2011 -0400
+
+    Updated Binary.
+
+commit d7f5f2cca5db125422318989aaf1d391d2e7afaf
+Author: Alan Ott <alan@signal11.us>
+Date:   Fri Apr 8 19:39:54 2011 -0400
+
+    Binary on Mac OS X
+
+commit 3f341d246830c40f94b27adf1201a71208e31086
+Merge: c54aba0 f61cea6
+Author: Alan Ott <alan@signal11.us>
+Date:   Fri Apr 8 19:35:31 2011 -0400
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit f61cea6e69efe6a37db68f04284b0aa37a9a7129
+Author: Alan Ott <alan@signal11.us>
+Date:   Fri Apr 8 18:48:12 2011 -0400
+
+    Makefiles for MinGW
+
+commit c54aba08972218a99d807c37183d97f7e4c677f2
+Merge: 746873f 0123bb9
+Author: Alan Ott <alan@signal11.us>
+Date:   Wed Feb 9 08:43:02 2011 -0500
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit 746873f9cca0ac00da0a1c7cac5ccd24d19f58c1
+Merge: 7108ca4 eebf197
+Author: Alan Ott <alan@signal11.us>
+Date:   Tue Jan 18 23:07:38 2011 -0500
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit 7108ca446b9f0d4435d8dd26d10f5f2796a2996e
+Merge: 64daa8a 0dd77c8
+Author: Alan Ott <alan@signal11.us>
+Date:   Tue Jan 18 21:41:01 2011 -0500
+
+    Merge branch 'master' of github.com:signal11/hidapi
+
+commit 64daa8adbc1d7b940721aa592e876cbb679d495f
+Author: Alan Ott <alan@signal11.us>
+Date:   Tue Jan 11 23:38:15 2011 -0500
+
+    Support for Usage Page and Usage for each device in the hid_device_info struct.
+
+commit 897c45f360fb39c9ae5bcd3875da9efedff224f3
+Author: Bastaan Veelo <Bastiaan@Veelo.net>
+Date:   Thu Jan 13 00:46:22 2011 +0100
+
+    Fill in the Usage Page and Usage values on Mac.
