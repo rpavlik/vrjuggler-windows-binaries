@@ -55,7 +55,7 @@ Used during build (for plugins, generally), not needed to build VR
 Juggler applications, not bundled in this tree
 
 * [Java JDK][11] 1.6.0_38
-* [OpenAL-soft][7] - 1.14
+* [OpenAL-soft][7] - 1.15.1 official binaries
 * [FreeALUT][8] 1.10 built against OpenAL-soft
 * [VRPN][10] 07.30 prerelease
 
