@@ -6,13 +6,11 @@ Upstream project page: [VR Juggler](http://vrjuggler.googlecode.com)
 
 Build Information
 -----------------
-* Visual Studio 2008 (9.0), *with the [Visual C++ 2008 Feature Pack][1] or [Visual Studio SP1][sp1]*
-	installed for TR1 support. (These must be manually installed - they don't come through Microsoft Update.
+* Visual Studio 2008 (9.0), *with [Visual Studio SP1][sp1]*
+	installed for TR1 support. (Must be manually installed - they don't come through Microsoft Update.
         SP1 supercedes the feature pack. See [this post][checksp1] for info on checking for SP1.)
 
-* 3.0 stable branch of the upstream Git, with additional improvements - source tagged at <https://github.com/rpavlik/vrjuggler/tree/vrjuggler-windows-binaries-3.0-vc9-32-20130717>
-
-    * NOTE: This release now identifies itself as 3.0.1 - you may need to update your build configurations.
+* 3.0 stable branch of the upstream Git, with additional improvements - source tagged at <https://github.com/rpavlik/vrjuggler/tree/vrjuggler-windows-binaries-3.0-vc9-32-20140923>
 
 * Both ReleaseDLL and DebugRtDLL build modes
 
@@ -43,30 +41,33 @@ Included Dependencies
 Used during build and also needed to build applications, so bundled in
 this tree
 
-* [CPPDOM][2] 1.0.3 (from [fork with CMake support][3])
-* [GMTL][4] 0.6.1
-* [Boost][5] 1.45
-* [Audiere][6] 1.9.4 with patches - <https://github.com/vancegroup/Audiere/commit/dd9377f6eed2406b08e74138ae01bb9fa4222460>
-* [omniORB][9] 4.1.4
+* [Boost][] 1.45
+* [CPPDOM][] Modified version based on 1.2.0 (`git describe --tags` reports 1.2.0-28-gef20eee, from [my friendly CPPDOM fork][cppdomfork])
+* [GMTL][] trunk at r1282, reports version as 0.7.0
+
+[Boost]: http://www.boost.org/ "Boost Upstream"
+[CPPDOM]: http://sourceforge.net/projects/xml-cppdom/ "CPPDOM Upstream"
+[cppdomfork]: https://github.com/rpavlik/cppdom "CPPDOM on GitHub"
+[GMTL]: http://ggt.sourceforge.net/ "GMTL Upstream"
 
 Other Dependencies Used
 -----------------------
-Used during build (for plugins, generally), not needed to build VR
-Juggler applications, not bundled in this tree
+Used during build (for plugins, generally), not usually needed to build VR
+Juggler applications, SDK not bundled in this tree
 
-* [Java JDK][11] 1.6.0_38
-* [OpenAL-soft][7] - 1.15.1 official binaries
-* [FreeALUT][8] 1.10 built against OpenAL-soft
-* [VRPN][10] 07.30 prerelease
+* [Audiere][] 1.9.4 with patches - commit [0e19b3c](https://github.com/vancegroup/Audiere/commit/0e19b3c)
+* [FTDI][] USB interface library in package `CDM20814_WHQL_Certified`
+* [FreeALUT][] 1.10 [fork with patches][freealut-fork] built against OpenAL-soft
+* [Java JDK][jdk] 1.6.0_38
+* [omniORB][] 4.1.4
+* [OpenAL-soft][] - 1.16.0 official Windows build
+* [OpenGL Performer][] - 3.2.2 
+* [VRPN][] 07.30 prerelease
 
-[1]: http://www.microsoft.com/downloads/en/details.aspx?FamilyId=D466226B-8DAB-445F-A7B4-448B326C48E7&displaylang=en "Visual C++ 2008 Feature Pack"
-[2]: http://sourceforge.net/projects/xml-cppdom/ "CPPDOM Upstream"
-[3]: https://github.com/rpavlik/cppdom "CPPDOM on GitHub"
-[4]: http://ggt.sourceforge.net/ "GMTL Upstream"
-[5]: http://www.boost.org/ "Boost Upstream"
-[6]: http://audiere.sourceforge.net/ "Audiere Upstream"
-[7]: http://kcat.strangesoft.net/openal.html "OpenAL-soft Upstream"
-[8]: http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx?RootFolder=%2Fopenal%2FDownloads%2FALUT&FolderCTID=&View=%7B6A9700C6-7248-4CD2-83F5-268F2C176072%7D "FreeALUT Upstream"
-[9]: http://omniorb.sourceforge.net/ "omniORB Upstream"
-[10]: http://www.vrpn.org/ "VRPN Upstream"
-[11]: http://www.oracle.com/technetwork/java/javase/downloads/index.html "Java JDK Upstream"
+[Audiere]: http://audiere.sourceforge.net/ "Audiere Upstream"
+[FreeALUT]: http://connect.creativelabs.com/openal/Downloads/Forms/AllItems.aspx?RootFolder=%2Fopenal%2FDownloads%2FALUT&FolderCTID=&View=%7B6A9700C6-7248-4CD2-83F5-268F2C176072%7D "FreeALUT Upstream"
+[freealut-fork]: https://github.com/vancegroup/freealut
+[jdk]: http://www.oracle.com/technetwork/java/javase/downloads/index.html "Java JDK Upstream"
+[omniORB]: http://omniorb.sourceforge.net/ "omniORB Upstream"
+[OpenAL-soft]: http://kcat.strangesoft.net/openal.html "OpenAL-soft Upstream"
+[VRPN]: http://www.vrpn.org/ "VRPN Upstream"
