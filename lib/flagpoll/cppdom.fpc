@@ -1,0 +1,16 @@
+exec_prefix=${prefix}
+cxxflags=
+includedir=-I${fp_file_cwd}/../../include
+libs=cppdom-1_2_0
+libdir=-LIBPATH:${fp_file_cwd}/../../lib
+
+Name: XML CppDom
+Provides: cppdom
+Version: 1.2.0
+Description: A C++ based XML loader and writer with an internal DOM representation.
+URL: http://xml-cppdom.sf.net
+Requires:
+Libs: ${libdir} ${libs}
+Cflags: ${includedir}
+Arch: x86
+prefix: ${fp_file_cwd}/../..

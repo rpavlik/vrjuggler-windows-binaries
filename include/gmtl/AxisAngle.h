@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -39,8 +39,10 @@ public:
    
    /** default constructor. initializes to identity rotation (no rotation). */
    AxisAngle() : 
-      VecBase<DATA_TYPE, 4>( (DATA_TYPE)0.0, (DATA_TYPE)1.0, 
-                             (DATA_TYPE)0.0, (DATA_TYPE)0.0 )
+      VecBase<DATA_TYPE, 4>(static_cast<DATA_TYPE>(0.0),
+                            static_cast<DATA_TYPE>(1.0),
+                            static_cast<DATA_TYPE>(0.0),
+                            static_cast<DATA_TYPE>(0.0))
    {
    }
    

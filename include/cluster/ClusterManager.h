@@ -29,7 +29,10 @@
 
 #include <gadget/gadgetConfig.h>
 
+// Disable deprecation warning in 3.0 only, for ABI/API compat.
+#define BOOST_SIGNALS_NO_DEPRECATION_WARNING
 #include <boost/signals.hpp>
+#undef BOOST_SIGNALS_NO_DEPRECATION_WARNING
 
 #include <vpr/Util/GUID.h>
 #include <vpr/Util/Singleton.h>

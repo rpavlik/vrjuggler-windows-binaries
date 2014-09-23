@@ -1,0 +1,15 @@
+prefix=c:\Users\rpavlik\Desktop\install\gmtl-mirror-scons
+exec_prefix=${prefix}
+cxxflags=
+includedir=c:\Users\rpavlik\Desktop\install\gmtl-mirror-scons\include
+
+Name: GMTL
+Provides: gmtl
+Version: 0.7.0
+Description: Generic Math Template Library
+URL: http://ggt.sf.net/
+Requires:
+Libs:
+Cflags: -I${includedir}
+Arch: noarch
+prefix: ${prefix}

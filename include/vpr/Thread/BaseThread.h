@@ -40,7 +40,11 @@
 
 #include <boost/noncopyable.hpp>
 #include <boost/function.hpp>
+
+// Disable deprecation warning in 3.0 only, for ABI/API compat.
+#define BOOST_SIGNALS_NO_DEPRECATION_WARNING
 #include <boost/signal.hpp>
+#undef BOOST_SIGNALS_NO_DEPRECATION_WARNING
 
 #include <vpr/vprTypes.h>
 #include <vpr/Thread/TSTable.h>            /* Needed to cache a copy here */

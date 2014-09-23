@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -42,8 +42,10 @@ public:
     */
    Point()
    {
-      for (unsigned i = 0; i < SIZE; ++i)
-         this->mData[i] = (DATA_TYPE)0;
+      for (unsigned int i = 0; i < SIZE; ++i)
+      {
+         this->mData[i] = static_cast<DATA_TYPE>(0);
+      }
    }
 
    /** @name Value constructors
@@ -119,12 +121,15 @@ public:
 
 // --- helper types --- //
 typedef Point<int,2> Point2i;
+typedef Point<unsigned int,2> Point2ui;
 typedef Point<float,2> Point2f;
 typedef Point<double,2> Point2d;
 typedef Point<int, 3> Point3i;
+typedef Point<unsigned int, 3> Point3ui;
 typedef Point<float,3> Point3f;
 typedef Point<double,3> Point3d;
 typedef Point<int, 4> Point4i;
+typedef Point<unsigned int, 4> Point4ui;
 typedef Point<float,4> Point4f;
 typedef Point<double,4> Point4d;
 

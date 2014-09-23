@@ -102,6 +102,7 @@
 
 /*
  * GCC 3.1 and beyond have non-standard STL stuff in the __gnu_cxx namespace.
+ * (That is, libstdc++ >= 4.0.0)
  * The code below works around that behavior by bringing the __gnu_cxx
  * namespace into the std namespace.
  *
@@ -113,6 +114,7 @@
  * The EKOPath/PathScale compiler similarly lies.
  */
 #if (! defined(__INTEL_COMPILER) && !defined(__PATHCC__) && defined(__GNUC__) && \
+     (defined(__GLIBCPP__) || defined(__GLIBCXX__)) && \
      ((__GNUC__ == 3 && __GNUC_MINOR__ >= 1) || __GNUC__ > 3)) || \
     (defined(__INTEL_COMPILER) && __INTEL_COMPILER >= 810 && defined(__GNUC__))
 namespace std

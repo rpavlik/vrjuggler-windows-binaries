@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -58,7 +58,8 @@ public:
     *  NOTE: the addition identity is [0,0,0,0]
     */
    Quat()
-      : mData( (DATA_TYPE)0.0, (DATA_TYPE)0.0, (DATA_TYPE)0.0, (DATA_TYPE)1.0 )
+      : mData(static_cast<DATA_TYPE>(0.0), static_cast<DATA_TYPE>(0.0),
+              static_cast<DATA_TYPE>(0.0), static_cast<DATA_TYPE>(1.0))
    {
    }
    
@@ -138,7 +139,10 @@ public:
    /** Get a DATA_TYPE pointer to the quat internal data.
     * @post Returns a ptr to the head of the quat data
     */
-   const DATA_TYPE*  getData() const { return (DATA_TYPE*)mData.getData();}
+   const DATA_TYPE* getData() const
+   {
+      return mData.getData();
+   }
 
 public:
    // Order x, y, z, w

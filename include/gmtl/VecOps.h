@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -182,9 +182,9 @@ template<class DATA_TYPE, unsigned SIZE, class SCALAR_TYPE>
 VecBase<DATA_TYPE, SIZE>& operator *=(VecBase<DATA_TYPE, SIZE>& v1,
                                       const SCALAR_TYPE& scalar)
 {
-   for(unsigned i=0;i<SIZE;++i)
+   for (unsigned int i = 0; i < SIZE; ++i)
    {
-      v1[i] *= (DATA_TYPE)scalar;
+      v1[i] *= static_cast<DATA_TYPE>(scalar);
    }
 
    return v1;
@@ -435,10 +435,10 @@ DATA_TYPE normalize(Vec<DATA_TYPE, SIZE>& v1)
  * @return  true if the vector is normalized, false otherwise
  */
 template< class DATA_TYPE, unsigned SIZE >
-bool isNormalized( const Vec<DATA_TYPE, SIZE>& v1,
-                   const DATA_TYPE eps = (DATA_TYPE) 0.0001f )
+bool isNormalized(const Vec<DATA_TYPE, SIZE>& v1,
+                  const DATA_TYPE eps = static_cast<DATA_TYPE>(0.0001))
 {
-   return Math::isEqual( lengthSquared( v1 ), DATA_TYPE(1.0), eps );
+   return Math::isEqual(lengthSquared(v1), DATA_TYPE(1.0), eps);
 }
 
 /**
@@ -467,6 +467,42 @@ Vec<DATA_TYPE,3>& cross( Vec<DATA_TYPE,3>& result, const Vec<DATA_TYPE, 3>& v1,
 }
 
 /**
+ * Compute the cross product between v1 and v2 and return the result
+ * implemented as a binary ^ operator. Use this to initialize a new
+ * Vec with the cross product of two Vecs, for example, or to increase
+ * code readability in implementations of algebraic formulae. Note
+ * this operation applies only to 3-dimensional vectors.
+ *
+ * Example:
+ * @code
+ *     Vec3f b(1.,0.,0.), c(0.,1.,0.);
+ *     Vec3f a( b ^ c );
+ * @endcode
+ * This is equivalent to:
+ * @code
+ *     Vec3f b(1.,0.,0.), c(0.,1.,0.);
+ *     Vec3f a;
+ *     cross( a, b, c );
+ * @endcode
+ * 
+ * @pre v1 and v2 are 3-D vectors
+ *
+ * @param v1   the first vector
+ * @param v2   the second vector
+ *
+ * @return  the cross product ( v1 ^ v2 ) as a new Vec.
+ */
+template<class DATA_TYPE>
+inline Vec<DATA_TYPE, 3> operator^( const Vec<DATA_TYPE, 3>& v1,
+                         const Vec<DATA_TYPE, 3>& v2 )
+{
+    Vec<DATA_TYPE, 3> result;
+    cross( result, v1, v2 );
+    return( result );
+}
+
+
+/**
  * Reflect a vector about a normal.
  *
  * This method reflects the given vector around the normal vector given.  It is similar to if the normal vector was
@@ -492,7 +528,7 @@ VecBase<DATA_TYPE, SIZE>& reflect( VecBase<DATA_TYPE, SIZE>& result, const
                            VecBase<DATA_TYPE, SIZE>& vec,
                            const Vec<DATA_TYPE, SIZE>& normal )
 {
-   result = vec - (DATA_TYPE( 2.0 ) * (dot( (Vec<DATA_TYPE, SIZE>)vec, normal ) * normal));
+   result = vec - (DATA_TYPE(2.0) * (dot(static_cast<Vec<DATA_TYPE, SIZE> >(vec), normal) * normal));
    return result;
 }
 

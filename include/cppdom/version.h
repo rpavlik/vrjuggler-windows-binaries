@@ -31,8 +31,8 @@
  *
  * -----------------------------------------------------------------
  * File:          $RCSfile$
- * Date modified: $Date: 2010-09-04 12:10:47 -0500 (Sat, 04 Sep 2010) $
- * Version:       $Revision: 666 $
+ * Date modified: $Date: 2011-05-01 11:07:55 -0500 (Sun, 01 May 2011) $
+ * Version:       $Revision: 683 $
  * -----------------------------------------------------------------
  *
  ************************************************************ cppdom-cpr-end */
@@ -54,8 +54,8 @@
  */
 // The major/minor/patch version (up to 3 digits each).
 #define CPPDOM_VERSION_MAJOR     1
-#define CPPDOM_VERSION_MINOR     0
-#define CPPDOM_VERSION_PATCH     3
+#define CPPDOM_VERSION_MINOR     2
+#define CPPDOM_VERSION_PATCH     0
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------

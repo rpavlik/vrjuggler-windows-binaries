@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -334,15 +334,17 @@ namespace gmtl
     *  @see Quat
     */
    template <typename DATA_TYPE>
-   Quat<DATA_TYPE>& normalize( Quat<DATA_TYPE>& result )
+   Quat<DATA_TYPE>& normalize(Quat<DATA_TYPE>& result)
    {
-      DATA_TYPE l = length( result );
+      DATA_TYPE l = length(result);
 
       // return if no magnitude (already as normalized as possible)
-      if (l < (DATA_TYPE)0.0001)
+      if (l < static_cast<DATA_TYPE>(0.0001))
+      {
          return result;
+      }
 
-      DATA_TYPE l_inv = ((DATA_TYPE)1.0) / l;
+      DATA_TYPE l_inv = static_cast<DATA_TYPE>(1.0) / l;
       result[Xelt] *= l_inv;
       result[Yelt] *= l_inv;
       result[Zelt] *= l_inv;
@@ -361,9 +363,9 @@ namespace gmtl
     * @return  true if the quaternion is normalized, false otherwise
     */
    template< typename DATA_TYPE >
-   bool isNormalized( const Quat<DATA_TYPE>& q1, const DATA_TYPE eps = 0.0001f )
+   bool isNormalized(const Quat<DATA_TYPE>& q1, const DATA_TYPE eps = 0.0001f)
    {
-      return Math::isEqual( lengthSquared( q1 ), DATA_TYPE(1), eps );
+      return Math::isEqual(lengthSquared(q1), DATA_TYPE(1), eps);
    }
 
    /** quaternion complex conjugate.
@@ -387,18 +389,20 @@ namespace gmtl
     *  @see Quat
     */
    template <typename DATA_TYPE>
-   Quat<DATA_TYPE>& invert( Quat<DATA_TYPE>& result )
+   Quat<DATA_TYPE>& invert(Quat<DATA_TYPE>& result)
    {
       // from game programming gems p198
       // do result = conj( q ) / norm( q )
-      conj( result );
+      conj(result);
 
       // return if norm() is near 0 (divide by 0 would result in NaN)
-      DATA_TYPE l = lengthSquared( result );
-      if (l < (DATA_TYPE)0.0001)
+      DATA_TYPE l = lengthSquared(result);
+      if (l < static_cast<DATA_TYPE>(0.0001))
+      {
          return result;
+      }
 
-      DATA_TYPE l_inv = ((DATA_TYPE)1.0) / l;
+      DATA_TYPE l_inv = static_cast<DATA_TYPE>(1.0) / l;
       result[Xelt] *= l_inv;
       result[Yelt] *= l_inv;
       result[Zelt] *= l_inv;
@@ -412,17 +416,21 @@ namespace gmtl
     *  @see Quat
     */
    template <typename DATA_TYPE>
-   Quat<DATA_TYPE>& exp( Quat<DATA_TYPE>& result )
+   Quat<DATA_TYPE>& exp(Quat<DATA_TYPE>& result)
    {
       DATA_TYPE len1, len2;
 
-      len1 = Math::sqrt( result[Xelt] * result[Xelt] +
-                         result[Yelt] * result[Yelt] +
-                         result[Zelt] * result[Zelt] );
-      if (len1 > (DATA_TYPE)0.0)
-         len2 = Math::sin( len1 ) / len1;
+      len1 = Math::sqrt(result[Xelt] * result[Xelt] +
+                        result[Yelt] * result[Yelt] +
+                        result[Zelt] * result[Zelt]);
+      if (len1 > static_cast<DATA_TYPE>(0.0))
+      {
+         len2 = Math::sin(len1) / len1;
+      }
       else
-         len2 = (DATA_TYPE)1.0;
+      {
+         len2 = static_cast<DATA_TYPE>(1.0);
+      }
 
       result[Xelt] = result[Xelt] * len2;
       result[Yelt] = result[Yelt] * len2;
@@ -446,12 +454,16 @@ namespace gmtl
                            result[Zelt] * result[Zelt] );
 
       // avoid divide by 0
-      if (Math::isEqual( result[Welt], (DATA_TYPE)0.0, (DATA_TYPE)0.00001 ) == false)
-         length = Math::aTan( length / result[Welt] );
+      if (Math::isEqual(result[Welt], static_cast<DATA_TYPE>(0.0), static_cast<DATA_TYPE>(0.00001)) == false)
+      {
+         length = Math::aTan(length / result[Welt]);
+      }
       else
+      {
          length = Math::PI_OVER_2;
+      }
 
-      result[Welt] = (DATA_TYPE)0.0;
+      result[Welt] = static_cast<DATA_TYPE>(0.0);
       result[Xelt] = result[Xelt] * length;
       result[Yelt] = result[Yelt] * length;
       result[Zelt] = result[Zelt] * length;
@@ -494,7 +506,10 @@ namespace gmtl
     * @see Quat
     */
    template <typename DATA_TYPE>
-   Quat<DATA_TYPE>& slerp( Quat<DATA_TYPE>& result, const DATA_TYPE t, const Quat<DATA_TYPE>& from, const Quat<DATA_TYPE>& to, bool adjustSign=true)
+   Quat<DATA_TYPE>& slerp(Quat<DATA_TYPE>& result, const DATA_TYPE t,
+                          const Quat<DATA_TYPE>& from,
+                          const Quat<DATA_TYPE>& to,
+                          const bool adjustSign = true)
    {
       const Quat<DATA_TYPE>& p = from; // just an alias to match q
 
@@ -503,7 +518,7 @@ namespace gmtl
 
       // adjust signs (if necessary)
       Quat<DATA_TYPE> q;
-      if (adjustSign && (cosom < (DATA_TYPE)0.0))
+      if (adjustSign && (cosom < static_cast<DATA_TYPE>(0.0)))
       {
          cosom = -cosom;
          q[0] = -to[0];   // Reverse all signs
@@ -518,19 +533,19 @@ namespace gmtl
 
       // Calculate coefficients
       DATA_TYPE sclp, sclq;
-      if (((DATA_TYPE)1.0 - cosom) > (DATA_TYPE)0.0001) // 0.0001 -> some epsillon
+      if ((static_cast<DATA_TYPE>(1.0) - cosom) > static_cast<DATA_TYPE>(0.0001)) // 0.0001 -> some epsillo)n
       {
          // Standard case (slerp)
          DATA_TYPE omega, sinom;
-         omega = gmtl::Math::aCos( cosom ); // extract theta from dot product's cos theta
-         sinom = gmtl::Math::sin( omega );
-         sclp  = gmtl::Math::sin( ((DATA_TYPE)1.0 - t) * omega ) / sinom;
-         sclq  = gmtl::Math::sin( t * omega ) / sinom;
+         omega = Math::aCos(cosom); // extract theta from dot product's cos theta
+         sinom = Math::sin(omega );
+         sclp  = Math::sin((static_cast<DATA_TYPE>(1.0) - t) * omega ) / sinom;
+         sclq  = Math::sin(t * omega ) / sinom;
       }
       else
       {
          // Very close, do linear interp (because it's faster)
-         sclp = (DATA_TYPE)1.0 - t;
+         sclp = static_cast<DATA_TYPE>(1.0) - t;
          sclq = t;
       }
 
@@ -551,7 +566,9 @@ namespace gmtl
     *  @see Quat
     */
    template <typename DATA_TYPE>
-   Quat<DATA_TYPE>& lerp( Quat<DATA_TYPE>& result, const DATA_TYPE t, const Quat<DATA_TYPE>& from, const Quat<DATA_TYPE>& to)
+   Quat<DATA_TYPE>& lerp(Quat<DATA_TYPE>& result, const DATA_TYPE t,
+                         const Quat<DATA_TYPE>& from,
+                         const Quat<DATA_TYPE>& to)
    {
       // just an alias to match q
       const Quat<DATA_TYPE>& p = from;
@@ -561,7 +578,7 @@ namespace gmtl
 
       // adjust signs (if necessary)
       Quat<DATA_TYPE> q;
-      if (cosom < (DATA_TYPE)0.0)
+      if (cosom < static_cast<DATA_TYPE>(0.0))
       {
          q[0] = -to[0];   // Reverse all signs
          q[1] = -to[1];
@@ -575,7 +592,7 @@ namespace gmtl
 
       // do linear interp
       DATA_TYPE sclp, sclq;
-      sclp = (DATA_TYPE)1.0 - t;
+      sclp = static_cast<DATA_TYPE>(1.0) - t;
       sclq = t;
 
       result[Xelt] = sclp * p[Xelt] + sclq * q[Xelt];

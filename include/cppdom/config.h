@@ -31,8 +31,8 @@
  *
  * -----------------------------------------------------------------
  * File:          $RCSfile$
- * Date modified: $Date: 2007-08-01 10:22:12 -0500 (Wed, 01 Aug 2007) $
- * Version:       $Revision: 623 $
+ * Date modified: $Date$
+ * Version:       $Revision$
  * -----------------------------------------------------------------
  *
  ************************************************************ cppdom-cpr-end */
@@ -47,10 +47,12 @@
 
 // -----------------------------------
 // win32
-#if defined(WIN32) || defined(WIN64)
+#if defined(_WIN32) || defined(_WIN64)
 
 // switch some warnings off
-#  pragma warning( disable: 4786 4275 4251 )
+#  ifdef _MSC_VER
+#    pragma warning( disable: 4786 4275 4251 )
+#  endif
 
 // export/import #define's for building a win32 dll
 #  ifdef CPPDOM_EXPORTS

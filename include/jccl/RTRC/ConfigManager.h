@@ -30,7 +30,10 @@
 #include <jccl/jcclConfig.h>
 #include <vector>
 #include <list>
+// Disable deprecation warning in 3.0 only, for ABI/API compat.
+#define BOOST_SIGNALS_NO_DEPRECATION_WARNING
 #include <boost/signal.hpp>
+#undef BOOST_SIGNALS_NO_DEPRECATION_WARNING
 
 #include <vpr/Sync/Mutex.h>
 #include <vpr/Sync/Guard.h>

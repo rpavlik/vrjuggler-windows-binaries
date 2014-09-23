@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -50,8 +50,10 @@ public:
     */
    Vec()
    {
-      for (unsigned i = 0; i < SIZE; ++i)
-         this->mData[i] = (DATA_TYPE)0;
+      for (unsigned int i = 0; i < SIZE; ++i)
+      {
+         this->mData[i] = static_cast<DATA_TYPE>(0);
+      }
    }
 
    /// @name Value constructors

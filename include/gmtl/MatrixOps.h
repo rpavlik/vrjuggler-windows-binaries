@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -21,22 +21,32 @@ namespace gmtl
  * @{
  */
 
-   /** Make identity matrix out the matrix.
-    * @post Every element is 0 except the matrix's diagonal, whose elements are 1.
+   /**
+    * Makes identity matrix out the matrix.
+    *
+    * @post Every element is 0 except the matrix's diagonal, whose elements
+    *       are 1.
     */
    template <typename DATA_TYPE, unsigned ROWS, unsigned COLS>
-   inline Matrix<DATA_TYPE, ROWS, COLS>& identity( Matrix<DATA_TYPE, ROWS, COLS>& result )
+   inline Matrix<DATA_TYPE, ROWS, COLS>&
+   identity(Matrix<DATA_TYPE, ROWS, COLS>& result)
    {
       if(result.mState != Matrix<DATA_TYPE, ROWS, COLS>::IDENTITY)   // if not already ident
       {
          // TODO: mp
          for (unsigned int r = 0; r < ROWS; ++r)
-         for (unsigned int c = 0; c < COLS; ++c)
-            result( r, c ) = (DATA_TYPE)0.0;
+         {
+            for (unsigned int c = 0; c < COLS; ++c)
+            {
+               result(r, c) = static_cast<DATA_TYPE>(0.0);
+            }
+         }
 
          // TODO: mp
-         for (unsigned int x = 0; x < Math::Min( COLS, ROWS ); ++x)
-            result( x, x ) = (DATA_TYPE)1.0;
+         for (unsigned int x = 0; x < Math::Min(COLS, ROWS); ++x)
+         {
+            result(x, x) = static_cast<DATA_TYPE>(1.0);
+         }
 
          result.mState = Matrix<DATA_TYPE, ROWS, COLS>::IDENTITY;
 //         result.mState = Matrix<DATA_TYPE, ROWS, COLS>::FULL;
@@ -45,25 +55,27 @@ namespace gmtl
       return result;
    }
 
-
-   /** zero out the matrix.
+   /**
+    * Zero out the matrix.
+    *
     * @post every element is 0.
     */
    template <typename DATA_TYPE, unsigned ROWS, unsigned COLS>
-   inline Matrix<DATA_TYPE, ROWS, COLS>& zero( Matrix<DATA_TYPE, ROWS, COLS>& result )
+   inline Matrix<DATA_TYPE, ROWS, COLS>&
+   zero(Matrix<DATA_TYPE, ROWS, COLS>& result)
    {
       if (result.mState == Matrix<DATA_TYPE, ROWS, COLS>::IDENTITY)
       {
-         for (unsigned int x = 0; x < Math::Min( ROWS, COLS ); ++x)
+         for (unsigned int x = 0; x < Math::Min(ROWS, COLS); ++x)
          {
-            result( x, x ) = (DATA_TYPE)0;
+            result(x, x) = static_cast<DATA_TYPE>(0);
          }
       }
       else
       {
-         for (unsigned int x = 0; x < ROWS*COLS; ++x)
+         for (unsigned int x = 0; x < ROWS * COLS; ++x)
          {
-            result.mData[x] = (DATA_TYPE)0;
+            result.mData[x] = static_cast<DATA_TYPE>(0);
          }
       }
       result.mState = Matrix<DATA_TYPE, ROWS, COLS>::ORTHOGONAL;
@@ -543,7 +555,8 @@ namespace gmtl
          for ( j = 0; j < n; j++ )
          {
             m[ i][ j] = a[ i * n + j];
-            m[ i][ j + n] = ( i == j ) ? (DATA_TYPE)1.0 : (DATA_TYPE)0.0 ;
+            m[ i][ j + n] = ( i == j ) ? static_cast<DATA_TYPE>(1.0)
+                                       : static_cast<DATA_TYPE>(0.0);
          }
       }
 
@@ -580,38 +593,56 @@ namespace gmtl
          }
 
          /* Normalization */
-         for ( j = 0; j < 2*n; j++ )
+         for (j = 0; j < 2 * n; ++j)
          {
-            if ( j == c[ k] )
-               m[ r[ k]][ j] = (DATA_TYPE)1.0;
+            if (j == c[k])
+            {
+               m[r[k]][j] = static_cast<DATA_TYPE>(1.0);
+            }
             else
-               m[ r[ k]][ j] /= pivot;
+            {
+               m[r[k]][j] /= pivot;
+            }
          }
 
          /* Reduction */
-         for ( i = 0; i < n; i++ )
+         for (i = 0; i < n; ++i)
          {
-            if ( i == r[ k] )
-               continue;
-
-            for ( j=0, fac = m[ i][ c[k]]; j < 2*n; j++ )
+            if (i == r[k])
             {
-               if ( j == c[ k] )
-                  m[ i][ j] = (DATA_TYPE)0.0;
+               continue;
+            }
+
+            for (j = 0, fac = m[i][c[k]]; j < 2 * n; ++j)
+            {
+               if (j == c[k])
+               {
+                  m[i][j] = static_cast<DATA_TYPE>(0.0);
+               }
                else
-                  m[ i][ j] -= fac * m[ r[k]][ j];
+               {
+                  m[i][j] -= fac * m[r[k]][j];
+               }
             }
          }
       }
 
       /* Assign inverse to a matrix */
-      for ( i = 0; i < n; i++ )
-         for ( j = 0; j < n; j++ )
-            row[ i] = ( c[ j] == i ) ? r[ j] : row[ i];
+      for (i = 0; i < n; ++i)
+      {
+         for (j = 0; j < n; ++j)
+         {
+            row[i] = (c[j] == i) ? r[j] : row[i];
+         }
+      }
 
-      for ( i = 0; i < n; i++ )
-         for ( j = 0; j < n; j++ )
-            b[ i * n +  j] = m[ row[ i]][ j + n];
+      for (i = 0; i < n; ++i)
+      {
+         for (j = 0; j < n; ++j)
+         {
+            b[i * n +  j] = m[row[i]][j + n];
+         }
+      }
 
       // It worked
       result.mState = src.mState;
@@ -677,16 +708,22 @@ namespace gmtl
  * @{
  */
 
-   /** Tests 2 matrices for equality
-    *  @param lhs    The first matrix
-    *  @param rhs    The second matrix
-    *  @pre Both matrices must be of the same size.
-    *  @return true if the matrices have the same element values; false otherwise
+   /**
+    * Tests 2 matrices for equality.
+    *
+    * @pre Both matrices must be of the same size.
+    *
+    * @param lhs The first matrix.
+    * @param rhs The second matrix.
+    *
+    * @return true if the matrices have the same element values; false
+    *         otherwise.
     */
    template <typename DATA_TYPE, unsigned ROWS, unsigned COLS>
-   inline bool operator==( const Matrix<DATA_TYPE, ROWS, COLS>& lhs, const Matrix<DATA_TYPE, ROWS, COLS>& rhs )
+   inline bool operator==(const Matrix<DATA_TYPE, ROWS, COLS>& lhs,
+                          const Matrix<DATA_TYPE, ROWS, COLS>& rhs)
    {
-      for (unsigned int i = 0; i < ROWS*COLS; ++i)
+      for (unsigned int i = 0; i < ROWS * COLS; ++i)
       {
          if (lhs.mData[i] != rhs.mData[i])
          {
@@ -703,16 +740,21 @@ namespace gmtl
       */
    }
 
-   /** Tests 2 matrices for inequality
-    *  @param lhs    The first matrix
-    *  @param rhs    The second matrix
-    *  @pre Both matrices must be of the same size.
-    *  @return false if the matrices differ on any element value; true otherwise
+   /**
+    * Tests 2 matrices for inequality.
+    * 
+    * @pre Both matrices must be of the same size.
+    *
+    * @param lhs The first matrix.
+    * @param rhs The second matrix.
+    *
+    * @return false if the matrices differ on any element value; true otherwise.
     */
    template <typename DATA_TYPE, unsigned ROWS, unsigned COLS>
-   inline bool operator!=( const Matrix<DATA_TYPE, ROWS, COLS>& lhs, const Matrix<DATA_TYPE, ROWS, COLS>& rhs )
+   inline bool operator!=(const Matrix<DATA_TYPE, ROWS, COLS>& lhs,
+                          const Matrix<DATA_TYPE, ROWS, COLS>& rhs)
    {
-      return bool( !(lhs == rhs) );
+      return ! (lhs == rhs);
    }
 
    /** Tests 2 matrices for equality within a tolerance

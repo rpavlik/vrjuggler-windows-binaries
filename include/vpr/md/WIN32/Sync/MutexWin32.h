@@ -47,6 +47,7 @@
 
 #include <assert.h>
 #include <boost/noncopyable.hpp>
+#include <boost/concept_check.hpp>
 
 #include <vpr/Sync/LockException.h>
 
@@ -88,6 +89,7 @@ public:
    {
       // ---- Delete the mutex --- //
       const int result = CloseHandle(mMutex);
+      boost::ignore_unused_variable_warning(result);
       assert(result);
    }
 

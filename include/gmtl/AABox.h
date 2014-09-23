@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -34,10 +34,10 @@ namespace gmtl
 
    public:
       /**
-       * Creates a new empty box.
+       * Creates a new uninitialized box.
        */
       AABox()
-         : mMin(0,0,0), mMax(0,0,0), mEmpty(true)
+         : mMin(0,0,0), mMax(0,0,0), mInitialized(false)
       {}
 
       /**
@@ -50,7 +50,7 @@ namespace gmtl
        * @pre  bot min and max are not zero
        */
       AABox(const Point<DATA_TYPE, 3>& min, const Point<DATA_TYPE, 3>& max)
-         : mMin(min), mMax(max), mEmpty(false)
+         : mMin(min), mMax(max), mInitialized(true)
       {}
 
       /**
@@ -59,7 +59,7 @@ namespace gmtl
        * @param box     the box the make a copy of
        */
       AABox(const AABox<DATA_TYPE>& box)
-         : mMin(box.mMin), mMax(box.mMax), mEmpty(box.mEmpty)
+         : mMin(box.mMin), mMax(box.mMax), mInitialized(box.mInitialized)
       {}
 
       /**
@@ -84,12 +84,25 @@ namespace gmtl
 
       /**
        * Tests if this box occupies no space.
+       * This method is deprecated. Use isInitialized() instead.
+       * \deprecated
        *
-       * @return  true if the box is empty, false otherwise
+       * @return  true if the box is empty/uninitialized, false otherwise
        */
       bool isEmpty() const
       {
-         return mEmpty;
+         return !mInitialized;
+      }
+
+      /**
+       * Tests if this box is initialized. An initialized box could have
+       * zero volume but would contain one point.
+       *
+       * @return  true if the box is initialized, false otherwise
+       */
+      bool isInitialized() const
+      {
+         return mInitialized;
       }
 
       /**
@@ -114,12 +127,25 @@ namespace gmtl
 
       /**
        * Sets the empty flag on this box.
+       * This method is deprecated. Use setInitialized() instead.
+       * \deprecated
        *
        * @param empty   true to make the box empty, false otherwise
        */
       void setEmpty(bool empty)
       {
-         mEmpty = empty;
+         mInitialized = !empty;
+      }
+
+      /**
+       * Marks a box as initialized. Boxes that are initialized (isInitialized()==true)
+       * but have zero volume (mMax==mMin) contain exactly one point.
+       *
+       * @param initialized  true to mark the box as initialized, false otherwise
+       */
+      void setInitialized(bool initialized=true)
+      {
+         mInitialized = initialized;
       }
 
    public:
@@ -134,9 +160,9 @@ namespace gmtl
       Point<DATA_TYPE, 3> mMax;
 
       /**
-       * Flag for empty box. True if the box is empty.
+       * Initialization flag. False initially, true if the box is initialized.
        */
-      bool mEmpty;
+      bool mInitialized;
    };
 
    // --- helper types --- //

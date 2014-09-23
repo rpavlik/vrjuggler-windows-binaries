@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -186,7 +186,7 @@ namespace gmtl
       gmtlASSERT( (Math::isEqual( lengthSquared( axisAngle.getAxis() ), (DATA_TYPE)1.0, (DATA_TYPE)0.0001 )) &&
                    "you must pass in a normalized vector to setRot( quat, rad, vec )" );
 
-      DATA_TYPE half_angle = axisAngle.getAngle() * (DATA_TYPE)0.5;
+      DATA_TYPE half_angle = axisAngle.getAngle() * static_cast<DATA_TYPE>(0.5);
       DATA_TYPE sin_half_angle = Math::sin( half_angle );
 
       result[Welt] = Math::cos( half_angle );
@@ -224,25 +224,25 @@ namespace gmtl
       Quat<DATA_TYPE> qx, qy, qz;
 
       // precompute half angles
-      DATA_TYPE xOver2 = xRot * (DATA_TYPE)0.5;
-      DATA_TYPE yOver2 = yRot * (DATA_TYPE)0.5;
-      DATA_TYPE zOver2 = zRot * (DATA_TYPE)0.5;
+      DATA_TYPE xOver2 = xRot * static_cast<DATA_TYPE>(0.5);
+      DATA_TYPE yOver2 = yRot * static_cast<DATA_TYPE>(0.5);
+      DATA_TYPE zOver2 = zRot * static_cast<DATA_TYPE>(0.5);
 
       // set the pitch quat
       qx[Xelt] = Math::sin( xOver2 );
-      qx[Yelt] = (DATA_TYPE)0.0;
-      qx[Zelt] = (DATA_TYPE)0.0;
+      qx[Yelt] = static_cast<DATA_TYPE>(0.0);
+      qx[Zelt] = static_cast<DATA_TYPE>(0.0);
       qx[Welt] = Math::cos( xOver2 );
 
       // set the yaw quat
-      qy[Xelt] = (DATA_TYPE)0.0;
+      qy[Xelt] = static_cast<DATA_TYPE>(0.0);
       qy[Yelt] = Math::sin( yOver2 );
-      qy[Zelt] = (DATA_TYPE)0.0;
+      qy[Zelt] = static_cast<DATA_TYPE>(0.0);
       qy[Welt] = Math::cos( yOver2 );
 
       // set the roll quat
-      qz[Xelt] = (DATA_TYPE)0.0;
-      qz[Yelt] = (DATA_TYPE)0.0;
+      qz[Xelt] = static_cast<DATA_TYPE>(0.0);
+      qz[Yelt] = static_cast<DATA_TYPE>(0.0);
       qz[Zelt] = Math::sin( zOver2 );
       qz[Welt] = Math::cos( zOver2 );
 
@@ -287,10 +287,10 @@ namespace gmtl
       DATA_TYPE tr( mat( 0, 0 ) + mat( 1, 1 ) + mat( 2, 2 ) ), s( 0.0f );
 
       // If diagonal is positive
-      if (tr > (DATA_TYPE)0.0)
+      if (tr > static_cast<DATA_TYPE>(0.0))
       {
-         s = Math::sqrt( tr + (DATA_TYPE)1.0 );
-         quat[Welt] = s * (DATA_TYPE)0.5;
+         s = Math::sqrt(tr + static_cast<DATA_TYPE>(1.0));
+         quat[Welt] = s * static_cast<DATA_TYPE>(0.5);
          s = DATA_TYPE(0.5) / s;
 
          quat[Xelt] = (mat( 2, 1 ) - mat( 1, 2 )) * s;
@@ -305,21 +305,27 @@ namespace gmtl
          unsigned int i( Xelt ), j, k;
 
          if (mat( 1, 1 ) > mat( 0, 0 ))
+         {
             i = 1;
+         }
 
          if (mat( 2, 2 ) > mat( i, i ))
+         {
             i = 2;
+         }
 
          j = nxt[i];
          k = nxt[j];
 
-         s = Math::sqrt( (mat( i, i )-(mat( j, j )+mat( k, k ))) + (DATA_TYPE)1.0 );
+         s = Math::sqrt((mat(i, i) - (mat(j, j) + mat( k, k ))) + static_cast<DATA_TYPE>(1.0));
 
          DATA_TYPE q[4];
-         q[i] = s * (DATA_TYPE)0.5;
+         q[i] = s * static_cast<DATA_TYPE>(0.5);
 
-         if (s != (DATA_TYPE)0.0)
+         if (s != static_cast<DATA_TYPE>(0.0))
+         {
             s = DATA_TYPE(0.5) / s;
+         }
 
          q[3] = (mat( k, j ) - mat( j, k )) * s;
          q[j] = (mat( j, i ) + mat( i, j )) * s;
@@ -360,24 +366,27 @@ namespace gmtl
     * @post axisAngle = quat;
     */
    template <typename DATA_TYPE>
-   inline AxisAngle<DATA_TYPE>& set( AxisAngle<DATA_TYPE>& axisAngle, Quat<DATA_TYPE> quat )
+   inline AxisAngle<DATA_TYPE>& set(AxisAngle<DATA_TYPE>& axisAngle,
+                                    Quat<DATA_TYPE> quat)
    {
       // set sure we don't get a NaN result from acos...
-      if (Math::abs( quat[Welt] ) > (DATA_TYPE)1.0)
+      if (Math::abs(quat[Welt]) > static_cast<DATA_TYPE>(1.0))
       {
-         gmtl::normalize( quat );
+         gmtl::normalize(quat);
       }
-      gmtlASSERT( Math::abs( quat[Welt] ) <= (DATA_TYPE)1.0 && "acos returns NaN when quat[Welt] > 1, try normalizing your quat." );
+
+      gmtlASSERT(Math::abs(quat[Welt]) <= static_cast<DATA_TYPE>(1.0) &&
+                 "acos returns NaN when quat[Welt] > 1, try normalizing your quat." );
 
       // [acos( w ) * 2.0, v / (asin( w ) * 2.0)]
 
       // set the angle - aCos is mathematically defined to be between 0 and PI
-      DATA_TYPE rad = Math::aCos( quat[Welt] ) * (DATA_TYPE)2.0;
-      axisAngle.setAngle( rad );
+      DATA_TYPE rad = Math::aCos(quat[Welt]) * static_cast<DATA_TYPE>(2.0);
+      axisAngle.setAngle(rad);
 
       // set the axis: (use sin(rad) instead of asin(w))
-      DATA_TYPE sin_half_angle = Math::sin( rad * (DATA_TYPE)0.5 );
-      if (sin_half_angle >= (DATA_TYPE)0.0001) // because (PI >= rad >= 0)
+      DATA_TYPE sin_half_angle = Math::sin( rad * static_cast<DATA_TYPE>(0.5));
+      if (sin_half_angle >= static_cast<DATA_TYPE>(0.0001)) // because (PI >= rad >= 0)
       {
          DATA_TYPE sin_half_angle_inv = DATA_TYPE(1.0) / sin_half_angle;
          Vec<DATA_TYPE, 3> axis( quat[Xelt] * sin_half_angle_inv,
@@ -393,10 +402,13 @@ namespace gmtl
          // one of the terms should be a 1,
          // so we can maintain unit-ness
          // in case w is 0 (which here w is 0)
-         axisAngle.setAxis( gmtl::Vec<DATA_TYPE, 3>(
-                             DATA_TYPE( 1.0 ) /*- gmtl::Math::abs( quat[Welt] )*/,
-                            (DATA_TYPE)0.0,
-                            (DATA_TYPE)0.0 ) );
+         axisAngle.setAxis(
+            gmtl::Vec<DATA_TYPE, 3>(
+               static_cast<DATA_TYPE>(1.0) /*- gmtl::Math::abs( quat[Welt] )*/,
+               static_cast<DATA_TYPE>(0.0),
+               static_cast<DATA_TYPE>(0.0)
+            )
+         );
       }
       return axisAngle;
    }
@@ -703,6 +715,69 @@ namespace gmtl
       return setFrustum( result, -right, top, right, -top, nr, fr );
    }
 
+   /**
+    * Make a translation datatype from another translation datatype.
+    * Typically this is from Matrix to Vec or Vec to Matrix.
+    * This function reads only translation information from the src datatype.
+    *
+    * @param arg  the matrix to extract the translation from
+    *
+    * @pre if making an n x n matrix, then for
+    *    - <b>vector is homogeneous:</b> SIZE of vector needs to equal number of Matrix ROWS - 1
+    *    - <b>vector has scale component:</b> SIZE of vector needs to equal number of Matrix ROWS
+    * <br>if making an n x n+1 matrix, then for
+    *    - <b>vector is homogeneous:</b> SIZE of vector needs to equal number of Matrix ROWS
+    *    - <b>vector has scale component:</b> SIZE of vector needs to equal number of Matrix ROWS + 1
+    * @post if preconditions are not met, then function is undefined (will not compile)
+    */
+   template<typename TRANS_TYPE, typename SRC_TYPE >
+   inline TRANS_TYPE makeTrans( const SRC_TYPE& arg,
+                             Type2Type< TRANS_TYPE > t = Type2Type< TRANS_TYPE >())
+   {
+      gmtl::ignore_unused_variable_warning(t);
+      TRANS_TYPE temporary;
+      return setTrans( temporary, arg );
+   }
+
+   /** Configure a matrix from view parameters.
+    * 
+    * Functionally equivalent to gluLookAt(), this function configures
+    * @c result as a view matrix with the viewer positioned at @c eye,
+    * looking towards @c center, with the specified @c up orientation.
+    * Results are undefined if (center-eye) == 0 or (center-eye) is
+    * coincident with +/-up. @c result can be used to transform point
+    * data from world to OpenGL eye coordinates. @c result.mData can
+    * be passed to an OpenGL GLSL shader as uniform mat4 data.
+    *
+    * @pre (center-eye) has non-zero length
+    * @pre (center-eye) not coincident with +/-up
+    *
+    * @param result the matrix to be configured as a view matrix.
+    * @param eye the position of the viewer.
+    * @param center a target location to look at. The view direction is
+    *   computed as @c center - @c eye.
+    * @param up the viewer's up orientation.
+    * @return a reference to @c result for convenience.
+    */
+    template <typename T>
+    inline Matrix<T, 4,4>& setLookAt( Matrix<T, 4,4>& result,
+        const Point<T, 3>& eye, const Point<T, 3>& center, const Vec<T, 3>& up )
+    {
+        Vec<T, 3> f( center-eye ); normalize( f );
+        Vec<T, 3> s( f ^ up ); normalize( s );
+        Vec<T, 3> u( s ^ f ); normalize( u );
+
+        Matrix<T, 4,4> orient;
+        zero( orient );
+        orient(0,0) = s[0]; orient(1,0) = u[0]; orient(2,0) = -f[0];
+        orient(0,1) = s[1]; orient(1,1) = u[1]; orient(2,1) = -f[1];
+        orient(0,2) = s[2]; orient(1,2) = u[2]; orient(2,2) = -f[2];
+        orient(3,3) = T(1.);
+
+        result = orient * makeTrans< Matrix<T, 4,4> >( -eye );
+        result.mState = Matrix<T, 4,4>::AFFINE;
+        return( result );
+    }
 
    /*
    template< typename DATA_TYPE, unsigned ROWS, unsigned COLS, unsigned SIZE, typename REP >
@@ -1319,30 +1394,6 @@ namespace gmtl
       return setDirCos( temporary, xDestAxis, yDestAxis, zDestAxis, xSrcAxis, ySrcAxis, zSrcAxis );
    }
 
-   /**
-    * Make a translation datatype from another translation datatype.
-    * Typically this is from Matrix to Vec or Vec to Matrix.
-    * This function reads only translation information from the src datatype.
-    *
-    * @param arg  the matrix to extract the translation from
-    *
-    * @pre if making an n x n matrix, then for
-    *    - <b>vector is homogeneous:</b> SIZE of vector needs to equal number of Matrix ROWS - 1
-    *    - <b>vector has scale component:</b> SIZE of vector needs to equal number of Matrix ROWS
-    * <br>if making an n x n+1 matrix, then for
-    *    - <b>vector is homogeneous:</b> SIZE of vector needs to equal number of Matrix ROWS
-    *    - <b>vector has scale component:</b> SIZE of vector needs to equal number of Matrix ROWS + 1
-    * @post if preconditions are not met, then function is undefined (will not compile)
-    */
-   template<typename TRANS_TYPE, typename SRC_TYPE >
-   inline TRANS_TYPE makeTrans( const SRC_TYPE& arg,
-                             Type2Type< TRANS_TYPE > t = Type2Type< TRANS_TYPE >())
-   {
-      gmtl::ignore_unused_variable_warning(t);
-      TRANS_TYPE temporary;
-      return setTrans( temporary, arg );
-   }
-
    /** Create a rotation datatype that will xform first vector to the second.
     *  @pre  each vec needs to be normalized.
     *  @post This function returns a temporary object.
@@ -1364,29 +1415,33 @@ namespace gmtl
    inline DEST_TYPE& setRot( DEST_TYPE& result, const Vec<DATA_TYPE, 3>& from, const Vec<DATA_TYPE, 3>& to )
    {
       // @todo should assert that DEST_TYPE::DataType == DATA_TYPE
-      const DATA_TYPE epsilon = (DATA_TYPE)0.00001;
+      const DATA_TYPE epsilon = static_cast<DATA_TYPE>(0.00001);
 
-      gmtlASSERT( gmtl::Math::isEqual( gmtl::length( from ), (DATA_TYPE)1.0, epsilon ) &&
-                  gmtl::Math::isEqual( gmtl::length( to ), (DATA_TYPE)1.0, epsilon ) /* &&
-                  "input params not normalized" */);
+      gmtlASSERT(
+         gmtl::Math::isEqual(gmtl::length(from), static_cast<DATA_TYPE>(1.0), epsilon) &&
+         gmtl::Math::isEqual(gmtl::length(to), static_cast<DATA_TYPE>(1.0), epsilon ) /* &&
+         "input params not normalized" */);
 
-      DATA_TYPE cosangle = dot( from, to );
+      DATA_TYPE cosangle = dot(from, to);
 
       // if cosangle is close to 1, so the vectors are close to being coincident
       // Need to generate an angle of zero with any vector we like
       // We'll choose identity (no rotation)
-      if ( Math::isEqual( cosangle, (DATA_TYPE)1.0, epsilon ) )
+      if (Math::isEqual(cosangle, static_cast<DATA_TYPE>(1.0), epsilon))
       {
          return result = DEST_TYPE();
       }
 
       // vectors are close to being opposite, so rotate one a little...
-      else if ( Math::isEqual( cosangle, (DATA_TYPE)-1.0, epsilon ) )
+      else if (Math::isEqual(cosangle, static_cast<DATA_TYPE>(-1.0), epsilon))
       {
-         Vec<DATA_TYPE, 3> to_rot( to[0] + (DATA_TYPE)0.3, to[1] - (DATA_TYPE)0.15, to[2] - (DATA_TYPE)0.15 ), axis;
-         normalize( cross( axis, from, to_rot ) ); // setRot requires normalized vec
-         DATA_TYPE angle = Math::aCos( cosangle );
-         return setRot( result, gmtl::AxisAngle<DATA_TYPE>( angle, axis ) );
+         Vec<DATA_TYPE, 3> to_rot(to[0] + static_cast<DATA_TYPE>(0.3),
+                                  to[1] - static_cast<DATA_TYPE>(0.15),
+                                  to[2] - static_cast<DATA_TYPE>(0.15));
+         Vec<DATA_TYPE, 3> axis;
+         normalize(cross(axis, from, to_rot)); // setRot requires normalized vec
+         DATA_TYPE angle = Math::aCos(cosangle);
+         return setRot(result, gmtl::AxisAngle<DATA_TYPE>(angle, axis));
       }
 
       // This is the usual situation - take a cross-product of vec1 and vec2
@@ -1394,9 +1449,9 @@ namespace gmtl
       else
       {
          Vec<DATA_TYPE, 3> axis;
-         normalize( cross( axis, from, to ) ); // setRot requires normalized vec
-         DATA_TYPE angle = Math::aCos( cosangle );
-         return setRot( result, gmtl::AxisAngle<DATA_TYPE>( angle, axis ) );
+         normalize(cross(axis, from, to)); // setRot requires normalized vec
+         DATA_TYPE angle = Math::aCos(cosangle);
+         return setRot(result, gmtl::AxisAngle<DATA_TYPE>(angle, axis));
       }
    }
 

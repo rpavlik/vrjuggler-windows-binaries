@@ -670,10 +670,6 @@
          <base_frame_proxy>Head Proxy</base_frame_proxy>
          <relative_proxy>RelativeWand Proxy</relative_proxy>
       </simulated_relative_position>
-      <corba_remote_reconfig name="CORBA Remote Run-Time Reconfiguration" version="2">
-         <endpoint_addr />
-         <endpoint_port>45876</endpoint_port>
-      </corba_remote_reconfig>
       <keyboard_mouse_device name="Keyboard/Mouse Device" version="2">
          <mouse_sensitivity>1.0</mouse_sensitivity>
          <scroll_as_buttons>false</scroll_as_buttons>

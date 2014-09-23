@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -37,10 +37,12 @@ namespace gmtl
     *        then this might not give the correct result, since conj and invert is only equiv when normalized...
     */
    template <typename DATA_TYPE>
-   inline VecBase<DATA_TYPE, 3>& xform( VecBase<DATA_TYPE, 3>& result, const Quat<DATA_TYPE>& rot, const VecBase<DATA_TYPE, 3>& vector )
+   inline VecBase<DATA_TYPE, 3>& xform(VecBase<DATA_TYPE, 3>& result,
+                                       const Quat<DATA_TYPE>& rot,
+                                       const VecBase<DATA_TYPE, 3>& vector)
    {
       // check preconditions...
-      gmtlASSERT( Math::isEqual( length( rot ), (DATA_TYPE)1.0, (DATA_TYPE)0.0001 ) && "must pass a rotation quaternion to xform(result,quat,vec) - by definition, a rotation quaternion is normalized).  if you need non-rotation quaternion support, let us know." );
+      gmtlASSERT(Math::isEqual(length(rot), static_cast<DATA_TYPE>(1.0), static_cast<DATA_TYPE>(0.0001)) && "must pass a rotation quaternion to xform(result,quat,vec) - by definition, a rotation quaternion is normalized).  if you need non-rotation quaternion support, let us know.");
 
       // easiest to write and understand (slowest too)
       //return result_vec = makeVec( rot * makePure( vector ) * makeConj( rot ) );
@@ -48,18 +50,21 @@ namespace gmtl
       // completely hand expanded
       // (faster by 28% in gcc 2.96 debug mode.)
       // (faster by 35% in gcc 2.96 opt3 mode (78% for doubles))
-      Quat<DATA_TYPE> rot_conj( -rot[Xelt], -rot[Yelt], -rot[Zelt], rot[Welt] );
-      Quat<DATA_TYPE> pure( vector[0], vector[1], vector[2], (DATA_TYPE)0.0 );
+      Quat<DATA_TYPE> rot_conj(-rot[Xelt], -rot[Yelt], -rot[Zelt], rot[Welt]);
+      Quat<DATA_TYPE> pure(vector[0], vector[1], vector[2],
+                           static_cast<DATA_TYPE>(0.0));
       Quat<DATA_TYPE> temp(
          pure[Welt]*rot_conj[Xelt] + pure[Xelt]*rot_conj[Welt] + pure[Yelt]*rot_conj[Zelt] - pure[Zelt]*rot_conj[Yelt],
          pure[Welt]*rot_conj[Yelt] + pure[Yelt]*rot_conj[Welt] + pure[Zelt]*rot_conj[Xelt] - pure[Xelt]*rot_conj[Zelt],
          pure[Welt]*rot_conj[Zelt] + pure[Zelt]*rot_conj[Welt] + pure[Xelt]*rot_conj[Yelt] - pure[Yelt]*rot_conj[Xelt],
-         pure[Welt]*rot_conj[Welt] - pure[Xelt]*rot_conj[Xelt] - pure[Yelt]*rot_conj[Yelt] - pure[Zelt]*rot_conj[Zelt] );
+         pure[Welt]*rot_conj[Welt] - pure[Xelt]*rot_conj[Xelt] - pure[Yelt]*rot_conj[Yelt] - pure[Zelt]*rot_conj[Zelt]
+      );
 
       result.set(
          rot[Welt]*temp[Xelt] + rot[Xelt]*temp[Welt] + rot[Yelt]*temp[Zelt] - rot[Zelt]*temp[Yelt],
          rot[Welt]*temp[Yelt] + rot[Yelt]*temp[Welt] + rot[Zelt]*temp[Xelt] - rot[Xelt]*temp[Zelt],
-         rot[Welt]*temp[Zelt] + rot[Zelt]*temp[Welt] + rot[Xelt]*temp[Yelt] - rot[Yelt]*temp[Xelt] );
+         rot[Welt]*temp[Zelt] + rot[Zelt]*temp[Welt] + rot[Xelt]*temp[Yelt] - rot[Yelt]*temp[Xelt]
+      );
       return result;
    }
 
@@ -162,26 +167,35 @@ namespace gmtl
 
       // copy the point to the correct size.
       Vec<DATA_TYPE, COLS> temp_vector, temp_result;
-      for (unsigned x = 0; x < VEC_SIZE; ++x)
+      for (unsigned int x = 0; x < VEC_SIZE; ++x)
+      {
          temp_vector[x] = vector[x];
-      temp_vector[COLS-1] = (DATA_TYPE)0.0; // by definition of a vector, set the last unspecified elt to 0.0
+      }
+
+      // by definition of a vector, set the last unspecified elt to 0.0
+      temp_vector[COLS-1] = static_cast<DATA_TYPE>(0.0);
 
       // transform it.
       xform<DATA_TYPE, ROWS, COLS>( temp_result, matrix, temp_vector );
 
       // convert result back to vec<DATA_TYPE, VEC_SIZE>
-      // some matrices will make the W param large even if this is a true vector,
-      // we'll need to redistribute it to the other elts if W param is non-zero
-      if (Math::isEqual( temp_result[VEC_SIZE], (DATA_TYPE)0, (DATA_TYPE)0.0001 ) == false)
+      // some matrices will make the W param large even if this is a true
+      // vector, we'll need to redistribute it to the other elts if W param is
+      // non-zero
+      if (Math::isEqual(temp_result[VEC_SIZE], static_cast<DATA_TYPE>(0), static_cast<DATA_TYPE>(0.0001)) == false)
       {
-         DATA_TYPE w_coord_div = DATA_TYPE( 1.0 ) / temp_result[VEC_SIZE];
-         for (unsigned x = 0; x < VEC_SIZE; ++x)
+         DATA_TYPE w_coord_div = DATA_TYPE(1.0) / temp_result[VEC_SIZE];
+         for (unsigned int x = 0; x < VEC_SIZE; ++x)
+         {
             result[x] = temp_result[x] * w_coord_div;
+         }
       }
       else
       {
-         for (unsigned x = 0; x < VEC_SIZE; ++x)
+         for (unsigned int x = 0; x < VEC_SIZE; ++x)
+         {
             result[x] = temp_result[x];
+         }
       }
 
       return result;
@@ -267,27 +281,35 @@ namespace gmtl
       GMTL_STATIC_ASSERT( PNT_SIZE == COLS-1, Point_not_of_size_mat_col_minus_1_as_required_for_xform);
 
       // copy the point to the correct size.
-      Point<DATA_TYPE, PNT_SIZE+1> temp_point, temp_result;
-      for (unsigned x = 0; x < PNT_SIZE; ++x)
+      Point<DATA_TYPE, PNT_SIZE + 1> temp_point, temp_result;
+      for (unsigned int x = 0; x < PNT_SIZE; ++x)
+      {
          temp_point[x] = point[x];
-      temp_point[PNT_SIZE] = (DATA_TYPE)1.0; // by definition of a point, set the last unspecified elt to 1.0
+      }
+      // by definition of a point, set the last unspecified elt to 1.0
+      temp_point[PNT_SIZE] = static_cast<DATA_TYPE>(1.0);
 
       // transform it.
       xform<DATA_TYPE, ROWS, COLS>( temp_result, matrix, temp_point );
 
       // convert result back to pnt<DATA_TYPE, PNT_SIZE>
-      // some matrices will make the W param large even if this is a true vector,
-      // we'll need to redistribute it to the other elts if W param is non-zero
-      if (Math::isEqual( temp_result[PNT_SIZE], (DATA_TYPE)0, (DATA_TYPE)0.0001 ) == false)
+      // some matrices will make the W param large even if this is a true
+      // vector, we'll need to redistribute it to the other elts if W param is
+      // non-zero
+      if (Math::isEqual(temp_result[PNT_SIZE], static_cast<DATA_TYPE>(0), static_cast<DATA_TYPE>(0.0001)) == false)
       {
-         DATA_TYPE w_coord_div = DATA_TYPE( 1.0 ) / temp_result[PNT_SIZE];
-         for (unsigned x = 0; x < PNT_SIZE; ++x)
+         DATA_TYPE w_coord_div = DATA_TYPE(1.0) / temp_result[PNT_SIZE];
+         for (unsigned int x = 0; x < PNT_SIZE; ++x)
+         {
             result[x] = temp_result[x] * w_coord_div;
+         }
       }
       else
       {
-         for (unsigned x = 0; x < PNT_SIZE; ++x)
+         for (unsigned int x = 0; x < PNT_SIZE; ++x)
+         {
             result[x] = temp_result[x];
+         }
       }
 
       return result;

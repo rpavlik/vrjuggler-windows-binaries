@@ -1,4 +1,4 @@
-// GMTL is (C) Copyright 2001-2010 by Allen Bierbaum
+// GMTL is (C) Copyright 2001-2011 by Allen Bierbaum
 // Distributed under the GNU Lesser General Public License 2.1 with an
 // addendum covering inlined code. (See accompanying files LICENSE and
 // LICENSE.addendum or http://www.gnu.org/copyleft/lesser.txt)
@@ -21,8 +21,8 @@
  */
 // The major/minor/patch version (up to 3 digits each).
 #define GMTL_VERSION_MAJOR    0
-#define GMTL_VERSION_MINOR    6
-#define GMTL_VERSION_PATCH    1
+#define GMTL_VERSION_MINOR    7
+#define GMTL_VERSION_PATCH    0
 
 //--------------------------------------------------------------------------
 //--------------------------------------------------------------------------
