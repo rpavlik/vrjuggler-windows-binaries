@@ -1,6 +1,6 @@
 VR Juggler Windows Binaries
 ===========================
-Built by Ryan Pavlik <rpavlik@iastate.edu> <http://academic.cleardefinition.com>
+Built by Ryan Pavlik <ryan.pavlik@gmail.com> <http://ryanpavlik.com>
 
 Upstream project page: [VR Juggler](http://vrjuggler.googlecode.com)
 
